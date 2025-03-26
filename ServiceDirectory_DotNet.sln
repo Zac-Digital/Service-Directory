@@ -1,14 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Application", "ServiceDirectory.Application\ServiceDirectory.Application.csproj", "{C265A864-8288-4B99-BC8A-981DE8884C4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Application", "src\ServiceDirectory.Application\ServiceDirectory.Application.csproj", "{C265A864-8288-4B99-BC8A-981DE8884C4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastructure", "ServiceDirectory.Infrastructure\ServiceDirectory.Infrastructure.csproj", "{433BCC4D-ECCF-4901-BC82-45E41CCB0690}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastructure", "src\ServiceDirectory.Infrastructure\ServiceDirectory.Infrastructure.csproj", "{433BCC4D-ECCF-4901-BC82-45E41CCB0690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Domain", "ServiceDirectory.Domain\ServiceDirectory.Domain.csproj", "{F2FC1C5C-1BD1-470B-B646-60546EEE5237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Domain", "src\ServiceDirectory.Domain\ServiceDirectory.Domain.csproj", "{F2FC1C5C-1BD1-470B-B646-60546EEE5237}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Presentation.Web", "ServiceDirectory.Presentation.Web\ServiceDirectory.Presentation.Web.csproj", "{75BA5491-0754-496E-8B37-3458A1E2CC6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Presentation.Web", "src\ServiceDirectory.Presentation.Web\ServiceDirectory.Presentation.Web.csproj", "{75BA5491-0754-496E-8B37-3458A1E2CC6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Presentation.Api", "ServiceDirectory.Presentation.Api\ServiceDirectory.Presentation.Api.csproj", "{931BBCFE-B292-40BD-BF73-209B47CAD38E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Presentation.Api", "src\ServiceDirectory.Presentation.Api\ServiceDirectory.Presentation.Api.csproj", "{931BBCFE-B292-40BD-BF73-209B47CAD38E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDF11955-66C3-4E9D-B55B-9F003543EF04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,12 @@ Global
 		{931BBCFE-B292-40BD-BF73-209B47CAD38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{931BBCFE-B292-40BD-BF73-209B47CAD38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{931BBCFE-B292-40BD-BF73-209B47CAD38E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C265A864-8288-4B99-BC8A-981DE8884C4A} = {EDF11955-66C3-4E9D-B55B-9F003543EF04}
+		{F2FC1C5C-1BD1-470B-B646-60546EEE5237} = {EDF11955-66C3-4E9D-B55B-9F003543EF04}
+		{433BCC4D-ECCF-4901-BC82-45E41CCB0690} = {EDF11955-66C3-4E9D-B55B-9F003543EF04}
+		{931BBCFE-B292-40BD-BF73-209B47CAD38E} = {EDF11955-66C3-4E9D-B55B-9F003543EF04}
+		{75BA5491-0754-496E-8B37-3458A1E2CC6A} = {EDF11955-66C3-4E9D-B55B-9F003543EF04}
 	EndGlobalSection
 EndGlobal
