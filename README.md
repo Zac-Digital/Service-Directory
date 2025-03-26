@@ -28,7 +28,7 @@ using an official frontend library, and is heavily inspired by a project I worke
 
 ### Prerequisites
 
-1. .NET 9 SDK
+1. .NET 9 SDK with the ASP.NET Runtime
 
 ### Run
 
