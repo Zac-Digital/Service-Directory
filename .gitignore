@@ -94,7 +94,6 @@ ipch/
 *.vsp
 *.vspx
 *.sap
-*.e2e
 $tf/
 *.gpState
 _ReSharper*/
