@@ -60,7 +60,8 @@ You should now have the API and the Web Application running concurrently.
 2. `cd` into the root of the project that contains `ServiceDirectory.sln`
 3. To run **WITH** the E2E Tests..
     1. Make sure you have the app up and running: [Running](#running)
-    2. Execute `dotnet test --configuration Release --no-build --no-restore`
+    2. Ensure [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.5) is installed, and execute `pwsh bin/Release/net9.0/playwright.ps1 install`
+    3. Execute `dotnet test --configuration Release --no-build --no-restore`
 4. To run **WITHOUT** the E2E Tests..
     1. Execute `dotnet test --configuration Release --no-build --no-restore --filter Category!=E2E`
 
