@@ -2,4 +2,4 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
-public class IndexModel : PageModel;
+public class Search : PageModel;

@@ -1,0 +1,21 @@
+@page
+@model ServiceDirectory.Presentation.Web.Pages.Search
+@{
+    ViewData["Title"] = "Search Page - GOV.UK";
+}
+
+<div class="govuk-form-group">
+    <h1 class="govuk-label-wrapper">
+        <label data-testid="Search_LABEL_Primary" class="govuk-label govuk-label--l" for="event-name">
+            Enter a Postcode
+        </label>
+    </h1>
+    <div data-testid="Search_DIV_HINT_Primary" id="event-name-hint" class="govuk-hint">
+        For example SW1A 2AA
+    </div>
+    <input data-testid="Search_INPUT_Primary" class="govuk-input" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint">
+</div>
+
+<button data-testid="Search_BUTTON_Search" type="submit" class="govuk-button" data-module="govuk-button">
+    Search
+</button>
