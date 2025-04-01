@@ -1,0 +1,31 @@
+name: Setup DotNet
+
+inputs:
+  dotnet-version:
+    required: true
+    description: The DotNet Version
+
+runs:
+  using: composite
+  steps:
+    - name: Set up .NET ${{ inputs.dotnet-version }}
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ inputs.dotnet-version }}
+        dotnet-quality: 'ga' # See https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script#options [-Quality]
+
+    - name: NuGet Package Cache
+      id: nuget-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-NuGet-${{ hashFiles('**/*.csproj') }}
+
+    - name: Restore NuGet Packages
+      if: steps.nuget-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: dotnet restore
+
+    - name: Build Solution
+      shell: bash
+      run: dotnet build --configuration Release --no-restore
