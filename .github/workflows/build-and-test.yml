@@ -2,8 +2,6 @@ name: Build & Test Solution
 
 on:
   push:
-    branches:
-      - '*'
     paths:
       - 'src/**'
       - 'test/**'
