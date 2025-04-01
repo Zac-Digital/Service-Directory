@@ -14,7 +14,7 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
 |- src
     |- ServiceDirectory.Application
     |- ServiceDirectory.Domain
-    |- ServiceDirectory.Infrastructure
+    |- ServiceDirectory.Infrastructure.Data
     |- ServiceDirectory.Presentation.Api
     |- ServiceDirectory.Presentation.Web
 ```
@@ -23,7 +23,7 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
   Infrastructure layer(s).
 - `ServiceDirectory.Domain` - Contains POCOs (Plain Old CLR Objects) that is used to pass data between architectural
   layers.
-- `ServiceDirectory.Infrastructure` - Contains external database connections and facilitates CRUD operations.
+- `ServiceDirectory.Infrastructure.Data` - Contains external database connections and facilitates CRUD operations.
 - `ServiceDirectory.Presentation.Api` - Contains an API that is consumed by the Web layer.
 - `ServiceDirectory.Presentation.Web` - Contains the user-facing web application layer.
 

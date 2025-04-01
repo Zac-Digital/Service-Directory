@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Application", "src\ServiceDirectory.Application\ServiceDirectory.Application.csproj", "{C265A864-8288-4B99-BC8A-981DE8884C4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastructure", "src\ServiceDirectory.Infrastructure\ServiceDirectory.Infrastructure.csproj", "{433BCC4D-ECCF-4901-BC82-45E41CCB0690}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastructure.Data", "src\ServiceDirectory.Infrastructure.Data\ServiceDirectory.Infrastructure.Data.csproj", "{433BCC4D-ECCF-4901-BC82-45E41CCB0690}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Domain", "src\ServiceDirectory.Domain\ServiceDirectory.Domain.csproj", "{F2FC1C5C-1BD1-470B-B646-60546EEE5237}"
 EndProject
