@@ -22,7 +22,6 @@ runs:
         key: ${{ runner.os }}-NuGet-${{ hashFiles('**/*.csproj') }}
 
     - name: Restore NuGet Packages
-      if: steps.nuget-cache.outputs.cache-hit != 'true'
       shell: bash
       run: dotnet restore
 
