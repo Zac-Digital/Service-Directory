@@ -28,7 +28,7 @@ jobs:
           
       - name: Install Stryker Mutator
         shell: bash
-        run: dotnet tool install dotnet-stryker --global
+        run: dotnet tool install --global dotnet-stryker
 
       - name: Run Stryker Mutator
         shell: bash
