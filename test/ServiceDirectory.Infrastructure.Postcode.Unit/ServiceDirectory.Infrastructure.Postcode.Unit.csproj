@@ -25,7 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\ServiceDirectory.Infrastructure.Postcode\ServiceDirectory.Infrastructure.Postcode.csproj" />
+      <ProjectReference Include="..\..\src\ServiceDirectory.Infrastructure.Postcode\ServiceDirectory.Infrastructure.Postcode.csproj" />
     </ItemGroup>
 
 </Project>
