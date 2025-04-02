@@ -1,48 +1,58 @@
+using NSwag;
+using ServiceDirectory.Application.Postcode.Queries;
+using ServiceDirectory.Infrastructure.Postcode;
+using ServiceDirectory.Presentation.Api.Endpoints;
+
 namespace ServiceDirectory.Presentation.Api;
 
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
         builder.Services.AddAuthorization();
-
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-        builder.Services.AddOpenApi();
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddOpenApiDocument(options =>
         {
-            app.MapOpenApi();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        var summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+            options.PostProcess = document =>
             {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                        new WeatherForecast
-                        {
-                            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                            TemperatureC = Random.Shared.Next(-20, 55),
-                            Summary = summaries[Random.Shared.Next(summaries.Length)]
-                        })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast");
+                document.Info = new OpenApiInfo
+                {
+                    Version = "Version 1.0",
+                    Title = "Service Directory - API",
+                    Description = "The API component of the Service Directory Web Application"
+                };
+            };
+        });
 
+        // TODO: URLs will be stored in appsettings.json
+        builder.Services.AddHttpClient<IPostcodeClient, PostcodeClient>(client =>
+        {
+            client.BaseAddress = new Uri("https://api.postcodes.io");
+        });
+
+        builder.Services.AddTransient<IPostcodeQuery, PostcodeQuery>();
+
+        builder.Services.AddSingleton<MinimalPostcodeEndpoints>();
+        
+        WebApplication app = builder.Build();
+        
+        RegisterMinimalEndpoints(app.Services.CreateScope(), app);
+
+        app.UseOpenApi();
+        app.MapOpenApi();
+        app.UseSwaggerUi();
+        
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
+        
         app.Run();
+    }
+
+    private static void RegisterMinimalEndpoints(IServiceScope scope, WebApplication app)
+    {
+        scope.ServiceProvider.GetRequiredService<MinimalPostcodeEndpoints>().Register(app);
     }
 }

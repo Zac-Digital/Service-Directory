@@ -1,0 +1,22 @@
+{
+  "stryker-config": {
+    "reporters": [
+      "progress",
+      "markdown",
+      "html"
+    ],
+    "mutate": [
+      "!**/*Program.cs"
+    ],
+    "ignore-methods": [
+      "Log*"
+    ],
+    "test-case-filter": "Category!=E2E",
+    "mutation-level": "Complete",
+    "thresholds": {
+      "high": 80,
+      "low": 60,
+      "break": 40
+    }
+  }
+}

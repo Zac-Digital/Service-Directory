@@ -1,0 +1,49 @@
+name: Stryker Mutator Code Analysis
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'test/**'
+      - '.github/workflows/stryker-mutator.yml'
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Stryker Mutator
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup DotNet
+        uses: ./.github/actions/setup-dotnet
+        with:
+          dotnet-version: '9.x'
+          
+      - name: Install Stryker Mutator
+        shell: bash
+        run: dotnet tool install --global dotnet-stryker
+
+      - name: Run Stryker Mutator
+        shell: bash
+        run: dotnet stryker --configuration Release -f .github/stryker-mutator-config.json -O StrykerOutput --skip-version-check --concurrency `nproc`
+        
+      - name: Generate Markdown Report
+        if: always()
+        shell: bash
+        run: |
+          echo '### Stryker Mutation Report 🚀' >> $GITHUB_STEP_SUMMARY
+          cat StrykerOutput/reports/mutation-report.md >> $GITHUB_STEP_SUMMARY
+          
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'Stryker-Report'
+          path: 'StrykerOutput/reports/mutation-report.html'
+          compression-level: '9'

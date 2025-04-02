@@ -1,0 +1,31 @@
+name: Build & Test Solution
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'test/**'
+      - '.github/workflows/build-and-test.yml'
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup DotNet
+        uses: ./.github/actions/setup-dotnet
+        with:
+          dotnet-version: '9.x'
+          
+      - name: Test Solution
+        shell: bash
+        run: dotnet test --configuration Release --no-build --no-restore --filter Category!=E2E
