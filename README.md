@@ -15,6 +15,7 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
     |- ServiceDirectory.Application
     |- ServiceDirectory.Domain
     |- ServiceDirectory.Infrastructure.Data
+    |- ServiceDirectory.Infrastructure.Postcode
     |- ServiceDirectory.Presentation.Api
     |- ServiceDirectory.Presentation.Web
 ```
@@ -24,6 +25,7 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
 - `ServiceDirectory.Domain` - Contains POCOs (Plain Old CLR Objects) that is used to pass data between architectural
   layers.
 - `ServiceDirectory.Infrastructure.Data` - Contains external database connections and facilitates CRUD operations.
+- `ServiceDirectory.Infrastructure.Postcode` - Contains an HTTP client repository connecting to [Postcodes.io](https://postcodes.io/)
 - `ServiceDirectory.Presentation.Api` - Contains an API that is consumed by the Web layer.
 - `ServiceDirectory.Presentation.Web` - Contains the user-facing web application layer.
 
