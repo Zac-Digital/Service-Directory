@@ -32,9 +32,10 @@ jobs:
 
       - name: Run Stryker Mutator
         shell: bash
-        run: dotnet stryker -f .github/stryker-mutator-config.json -O StrykerOutput --skip-version-check --concurrency `nproc`
+        run: dotnet stryker --configuration Release -f .github/stryker-mutator-config.json -O StrykerOutput --skip-version-check --concurrency `nproc`
         
       - name: Generate Markdown Report
+        if: always()
         shell: bash
         run: |
           echo '### Stryker Mutation Report 🚀' >> $GITHUB_STEP_SUMMARY
