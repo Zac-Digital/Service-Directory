@@ -1,6 +1,7 @@
 using NSwag;
 using ServiceDirectory.Application.Postcode.Queries;
 using ServiceDirectory.Infrastructure.Postcode;
+using ServiceDirectory.Presentation.Api.Endpoints;
 
 namespace ServiceDirectory.Presentation.Api;
 
@@ -12,6 +13,7 @@ public static class Program
 
         builder.Services.AddAuthorization();
         builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddOpenApiDocument(options =>
         {
             options.PostProcess = document =>
@@ -32,8 +34,12 @@ public static class Program
         });
 
         builder.Services.AddTransient<IPostcodeQuery, PostcodeQuery>();
+
+        builder.Services.AddSingleton<MinimalPostcodeEndpoints>();
         
         WebApplication app = builder.Build();
+        
+        RegisterMinimalEndpoints(app.Services.CreateScope(), app);
 
         app.UseOpenApi();
         app.MapOpenApi();
@@ -41,7 +47,12 @@ public static class Program
         
         app.UseHttpsRedirection();
         app.UseAuthorization();
-
+        
         app.Run();
+    }
+
+    private static void RegisterMinimalEndpoints(IServiceScope scope, WebApplication app)
+    {
+        scope.ServiceProvider.GetRequiredService<MinimalPostcodeEndpoints>().Register(app);
     }
 }
