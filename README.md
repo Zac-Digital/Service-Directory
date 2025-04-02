@@ -54,7 +54,8 @@ In a terminal*..
 
 You should now have the API and the Web Application running concurrently.
 
-- Navigate to https://localhost:7024 to open the Service Directory Web Application and start playing around!
+- Navigate to https://localhost:7024/ to open the Service Directory Web Application and start playing around the UI!
+- Navigate to https://localhost:7086/swagger/index.html to open the Service Directory API and play with the endpoints!
 
 ### Testing
 
