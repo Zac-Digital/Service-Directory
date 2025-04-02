@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Presentati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastructure.Postcode", "src\ServiceDirectory.Infrastructure.Postcode\ServiceDirectory.Infrastructure.Postcode.csproj", "{EA963C2B-A69F-44AB-89C4-6AA13E910BBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastructure.Postcode.Unit", "src\ServiceDirectory.Infrastructure.Postcode.Unit\ServiceDirectory.Infrastructure.Postcode.Unit.csproj", "{E11A059B-558F-4775-9B19-0D712DE1D06C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastructure.Postcode.Unit", "test\ServiceDirectory.Infrastructure.Postcode.Unit\ServiceDirectory.Infrastructure.Postcode.Unit.csproj", "{E11A059B-558F-4775-9B19-0D712DE1D06C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
