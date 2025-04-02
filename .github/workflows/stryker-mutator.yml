@@ -40,3 +40,11 @@ jobs:
         run: |
           echo '### Stryker Mutation Report 🚀' >> $GITHUB_STEP_SUMMARY
           cat StrykerOutput/reports/mutation-report.md >> $GITHUB_STEP_SUMMARY
+          
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'Stryker-Report'
+          path: 'StrykerOutput/reports/mutation-report.html'
+          compression-level: '9'
+          retention-days: 7
