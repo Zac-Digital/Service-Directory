@@ -21,20 +21,15 @@ public class Search : ServiceDirectoryBasePage
     
     public async Task<IActionResult> OnPostAsync()
     {
-        if (!ModelState.IsValid)
+        Task<bool> isPostcodeValid = _apiClient.IsPostcodeValid(Postcode!);
+        
+        if (ModelState.IsValid && await isPostcodeValid)
         {
-            Error = true;
-            return Page();
+            return Redirect("/Results");
         }
         
-        bool isValidPostcode = await _apiClient.IsPostcodeValid(Postcode!);
+        Error = true;
+        return Page();
 
-        if (!isValidPostcode)
-        {
-            Error = true;
-            return Page();
-        }
-        
-        throw new NotImplementedException(); // TODO: Implement Next Page
     }
 }
