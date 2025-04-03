@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceDirectory.Presentation.Web.Pages.Shared;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
-public class IndexModel : PageModel;
+public class IndexModel : ServiceDirectoryBasePage;

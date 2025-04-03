@@ -15,4 +15,18 @@ public class SearchPage : BasePageTest
             "Search_BUTTON_Search"
         ];
     }
+
+    [Fact]
+    public async Task HasErrorContent()
+    {
+        await Page.GetByTestId("Search_INPUT_Primary").FillAsync("INVALID");
+        await Page.GetByTestId("Search_BUTTON_Search").ClickAsync();
+
+        PageDataTestIdentifiers = [..PageDataTestIdentifiers, "Search_PARAGRAPH_Error_Primary"];
+        
+        await HasContent();
+
+        await Expect(Page.Locator(".govuk-form-group.govuk-form-group--error")).ToBeVisibleAsync();
+        await Expect(Page.Locator(".govuk-input.govuk-input--error")).ToBeVisibleAsync();
+    }
 }

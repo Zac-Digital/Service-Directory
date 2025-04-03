@@ -1,4 +1,5 @@
 using GovUk.Frontend.AspNetCore;
+using ServiceDirectory.Presentation.Web.Client;
 
 namespace ServiceDirectory.Presentation.Web;
 
@@ -10,6 +11,12 @@ public static class Program
 
         builder.Services.AddRazorPages();
         builder.Services.AddGovUkFrontend();
+        
+        // TODO: URLs will be stored in appsettings.json
+        builder.Services.AddHttpClient<IApiClient, ApiClient>(client =>
+        {
+            client.BaseAddress = new Uri("https://localhost:7086");
+        });
 
         WebApplication app = builder.Build();
 
