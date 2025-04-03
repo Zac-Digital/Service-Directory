@@ -9,7 +9,7 @@ public abstract class BasePageTest : PageTest
 
     protected string PageRelativeUrl { get; init; } = null!;
     protected string PageTitle { get; init; } = null!;
-    protected string[] PageDataTestIdentifiers { get; init; } = null!;
+    protected string[] PageDataTestIdentifiers { get; set; } = null!;
     
     public override async Task InitializeAsync()
     {

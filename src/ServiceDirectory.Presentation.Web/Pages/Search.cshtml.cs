@@ -1,11 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceDirectory.Presentation.Web.Client;
+using ServiceDirectory.Presentation.Web.Pages.Shared;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
-public class Search : PageModel
+public class Search : ServiceDirectoryBasePage
 {
+    private readonly IApiClient _apiClient;
+
+    public Search(IApiClient apiClient)
+    {
+        _apiClient = apiClient;
+    }
+    
     [Required]
     [StringLength(8)]
     [BindProperty]
@@ -13,11 +21,15 @@ public class Search : PageModel
     
     public async Task<IActionResult> OnPostAsync()
     {
-        if (!ModelState.IsValid)
+        Task<bool> isPostcodeValid = _apiClient.IsPostcodeValid(Postcode!);
+        
+        if (ModelState.IsValid && await isPostcodeValid)
         {
-            return Page();
+            return Redirect("/Results");
         }
         
-        throw new NotImplementedException(); // TODO: Implement Next Page
+        Error = true;
+        return Page();
+
     }
 }
