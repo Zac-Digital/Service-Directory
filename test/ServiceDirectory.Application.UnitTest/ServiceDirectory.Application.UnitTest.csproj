@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
+        <RootNamespace>ServiceDirectory.Application.Unit</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,6 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\ServiceDirectory.Application\ServiceDirectory.Application.csproj" />
       <ProjectReference Include="..\..\src\ServiceDirectory.Infrastructure.Postcode\ServiceDirectory.Infrastructure.Postcode.csproj" />
     </ItemGroup>
 

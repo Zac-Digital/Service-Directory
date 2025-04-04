@@ -9,5 +9,9 @@ public class MinimalPostcodeEndpoints
         webApplication.MapGet("/postcode/validate/{postcode}",
                 async (string postcode, IPostcodeQuery postcodeQuery) => await postcodeQuery.IsPostcodeValid(postcode))
             .WithOpenApi();
+
+        webApplication.MapGet("/postcode/location/{postcode}",
+            async (string postcode, IPostcodeQuery postcodeQuery) =>
+                await postcodeQuery.GetLocationFromPostcode(postcode)).WithOpenApi();
     }
 }

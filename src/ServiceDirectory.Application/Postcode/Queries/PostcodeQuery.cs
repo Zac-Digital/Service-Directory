@@ -1,3 +1,4 @@
+using ServiceDirectory.Domain.Postcode;
 using ServiceDirectory.Infrastructure.Postcode;
 
 namespace ServiceDirectory.Application.Postcode.Queries;
@@ -11,5 +12,7 @@ public class PostcodeQuery : IPostcodeQuery
         _postcodeClient = postcodeClient;
     }
 
-    public async Task<bool> IsPostcodeValid(string postcode) => await _postcodeClient.ValidatePostcode(postcode);
+    public Task<bool> IsPostcodeValid(string postcode) => _postcodeClient.ValidatePostcode(postcode);
+    
+    public Task<LocationModel?> GetLocationFromPostcode(string postcode) => _postcodeClient.GetLocation(postcode);
 }
