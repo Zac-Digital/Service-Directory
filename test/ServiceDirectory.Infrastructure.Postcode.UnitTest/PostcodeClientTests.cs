@@ -2,10 +2,10 @@ using System.Net;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using ServiceDirectory.Domain.Postcode;
-using ServiceDirectory.Infrastructure.Postcode.Unit.Helpers;
+using ServiceDirectory.Infrastructure.Postcode.UnitTest.Helpers;
 using Shouldly;
 
-namespace ServiceDirectory.Infrastructure.Postcode.Unit;
+namespace ServiceDirectory.Infrastructure.Postcode.UnitTest;
 
 public class PostcodeClientTests
 {

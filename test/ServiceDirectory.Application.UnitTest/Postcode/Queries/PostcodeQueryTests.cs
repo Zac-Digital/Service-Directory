@@ -4,7 +4,7 @@ using ServiceDirectory.Domain.Postcode;
 using ServiceDirectory.Infrastructure.Postcode;
 using Shouldly;
 
-namespace ServiceDirectory.Application.Unit.Postcode.Queries;
+namespace ServiceDirectory.Application.UnitTest.Postcode.Queries;
 
 public class PostcodeQueryTests
 {
