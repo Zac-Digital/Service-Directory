@@ -73,6 +73,8 @@ public class PostcodeClient : IPostcodeClient
             _logger.LogError("Error: Attempting to deserialise result returned: NULL");
             return null;
         }
+        
+        _logger.LogInformation("Success: Postcode lookup returned: {Result}", postcodeResultModel.Result);
 
         return postcodeResultModel.Result;
     }

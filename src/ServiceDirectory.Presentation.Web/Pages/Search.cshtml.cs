@@ -25,7 +25,7 @@ public class Search : ServiceDirectoryBasePage
         
         if (ModelState.IsValid && await isPostcodeValid)
         {
-            return Redirect("/Results");
+            return RedirectToPage("/Results", new { Postcode });
         }
         
         Error = true;
