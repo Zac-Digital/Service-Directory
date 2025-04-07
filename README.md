@@ -1,6 +1,6 @@
 # Service Directory
 
-This codebase is an example of a "Service Directory" written in .NET using the GOV.UK frontend. It includes a postcode
+This codebase is an example of a "Service Directory" written in .NET using the [GOV.UK frontend](https://github.com/alphagov/govuk-frontend), following the [GDS](https://design-system.service.gov.uk/) as faithfully as possible. It includes a postcode
 search and a large set of mocked services belonging to locations within the vicinities of them.
 
 The intention of the project is to demonstrate a simple full stack .NET Application with a clean architecture approach
