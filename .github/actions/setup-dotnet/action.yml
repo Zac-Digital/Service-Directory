@@ -19,7 +19,7 @@ runs:
       uses: actions/cache@v4
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-NuGet-${{ hashFiles('**/*.csproj') }}
+        key: ${{ runner.os }}-NuGet-${{ hashFiles('**/*.csproj') }}-${{ hashFiles('Directory.Packages.props') }}
 
     - name: Restore NuGet Packages
       shell: bash
