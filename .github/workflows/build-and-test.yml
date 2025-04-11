@@ -1,6 +1,7 @@
 name: Build & Test Solution
 
 on:
+  workflow_dispatch: 
   push:
     paths:
       - 'src/**'
