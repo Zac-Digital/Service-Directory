@@ -1,6 +1,6 @@
 # Service Directory
 
-This codebase is an example of a "Service Directory" written in .NET using the GOV.UK frontend. It includes a postcode
+This codebase is an example of a "Service Directory" written in .NET using the [GOV.UK frontend](https://github.com/alphagov/govuk-frontend), following the [GDS](https://design-system.service.gov.uk/) as faithfully as possible. It includes a postcode
 search and a large set of mocked services belonging to locations within the vicinities of them.
 
 The intention of the project is to demonstrate a simple full stack .NET Application with a clean architecture approach
@@ -54,7 +54,8 @@ In a terminal*..
 
 You should now have the API and the Web Application running concurrently.
 
-- Navigate to https://localhost:7024 to open the Service Directory Web Application and start playing around!
+- Navigate to https://localhost:7024/ to open the Service Directory Web Application and start playing around the UI!
+- Navigate to https://localhost:7086/swagger/index.html to open the Service Directory API and play with the endpoints!
 
 ### Testing
 
