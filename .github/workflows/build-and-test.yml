@@ -5,6 +5,7 @@ on:
     paths:
       - 'src/**'
       - 'test/**'
+      - 'Directory.Packages.props'
       - '.github/workflows/build-and-test.yml'
 
 concurrency:
