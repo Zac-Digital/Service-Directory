@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using NSwag;
 using ServiceDirectory.Application.Postcode.Queries;
+using ServiceDirectory.Infrastructure.Data;
 using ServiceDirectory.Infrastructure.Postcode;
 using ServiceDirectory.Presentation.Api.Endpoints;
 
@@ -36,6 +38,12 @@ public static class Program
         builder.Services.AddTransient<IPostcodeQuery, PostcodeQuery>();
 
         builder.Services.AddSingleton<MinimalPostcodeEndpoints>();
+
+        builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
+            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution);
+        });
         
         WebApplication app = builder.Build();
         
