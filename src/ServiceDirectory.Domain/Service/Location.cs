@@ -7,9 +7,8 @@ public class Location : EntityBase
     public string AddressLineOne { get; init; } = null!;
     public string AddressLineTwo { get; init; } = null!;
     public string County { get; init; } = null!;
-    public string TownOrCity { get; init; } = null!;
+    public string TownOrCity { get; set; } = null!;
     public string Postcode { get; init; } = null!;
-    
-    public double Latitude { get; init; }
-    public double Longitude { get; init; }
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
 }

@@ -78,4 +78,31 @@ public class PostcodeClient : IPostcodeClient
 
         return postcodeResultModel.Result;
     }
+
+    public async Task<LocationModel?> GetRandomPostcodeLocation()
+    {
+        // Stryker disable once all : External service is mocked in testing so URL does not matter
+        HttpResponseMessage response = await _httpClient.GetAsync($"/random/postcodes");
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            _logger.LogError("Error: Request with URL {URL} failed with status code: {StatusCode}",
+                response.RequestMessage?.RequestUri, response.StatusCode);
+            return null;
+        }
+
+        PostcodeResultModel? postcodeResultModel =
+            JsonSerializer.Deserialize<PostcodeResultModel>(await response.Content.ReadAsStringAsync(),
+                JsonSerializerOptions.Web);
+
+        if (postcodeResultModel is null)
+        {
+            _logger.LogError("Error: Attempting to deserialise result returned: NULL");
+            return null;
+        }
+        
+        _logger.LogInformation("Success: Random postcode returned: {Result}", postcodeResultModel.Result);
+
+        return postcodeResultModel.Result;
+    }
 }

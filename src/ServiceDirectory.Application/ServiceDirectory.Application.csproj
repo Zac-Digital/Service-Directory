@@ -7,7 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ServiceDirectory.Infrastructure.Data\ServiceDirectory.Infrastructure.Data.csproj" />
       <ProjectReference Include="..\ServiceDirectory.Infrastructure.Postcode\ServiceDirectory.Infrastructure.Postcode.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Bogus" />
     </ItemGroup>
 
 </Project>

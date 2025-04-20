@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NSwag;
+using ServiceDirectory.Application.Database.Commands;
 using ServiceDirectory.Application.Postcode.Queries;
 using ServiceDirectory.Infrastructure.Data;
 using ServiceDirectory.Infrastructure.Postcode;
@@ -36,6 +37,7 @@ public static class Program
         });
 
         builder.Services.AddTransient<IPostcodeQuery, PostcodeQuery>();
+        builder.Services.AddTransient<IMockDataCommand, MockDataCommand>();
 
         builder.Services.AddSingleton<MinimalPostcodeEndpoints>();
 

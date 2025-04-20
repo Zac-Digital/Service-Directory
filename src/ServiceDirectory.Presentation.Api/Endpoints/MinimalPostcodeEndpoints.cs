@@ -1,3 +1,4 @@
+using ServiceDirectory.Application.Database.Commands;
 using ServiceDirectory.Application.Postcode.Queries;
 
 namespace ServiceDirectory.Presentation.Api.Endpoints;
@@ -13,5 +14,8 @@ public class MinimalPostcodeEndpoints
         webApplication.MapGet("/postcode/location/{postcode}",
             async (string postcode, IPostcodeQuery postcodeQuery) =>
                 await postcodeQuery.GetLocationFromPostcode(postcode)).WithOpenApi();
+
+        webApplication.MapPost("/database/mock",
+            async (IMockDataCommand mockDataCommand) => await mockDataCommand.SeedDatabaseWithMockData()).WithOpenApi();
     }
 }
