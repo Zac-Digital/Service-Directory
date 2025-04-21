@@ -36,13 +36,26 @@ In a terminal*..
 ### Prerequisites
 
 1. .NET 9 SDK with the ASP.NET Runtime
+2. Docker
+
+### Database
+
+This project uses Microsoft SQL Server 2022 for the Database. There is a convenient Docker Compose file that will get
+you up and running quickly:
+
+1. `cd` into `utility` and then `cd` into `mssql`
+2. Execute `docker compose up -d`
+
+This will work for Windows, macOS and Linux. If you are on Windows (x86-64) specifically, you may also choose to
+install Microsoft SQL Server 2022 natively — but I recommend going with Docker as it's easier to manage.
 
 ### Building
 
 1. Make sure you have installed the [Prerequisites](#prerequisites)
-2. `cd` into the root of the project that contains `ServiceDirectory.sln`
-3. Execute `dotnet restore`
-4. Execute `dotnet build --configuration Release --no-restore`
+2. Make sure you have got the [Database](#database) running
+3. `cd` into the root of the project that contains `ServiceDirectory.sln`
+4. Execute `dotnet restore`
+5. Execute `dotnet build --configuration Release --no-restore`
 
 ### Running
 
@@ -58,6 +71,8 @@ You should now have the API and the Web Application running concurrently.
 - Navigate to https://localhost:7086/swagger/index.html to open the Service Directory API and play with the endpoints!
 
 ### Testing
+
+Please note that Docker is **required** for running the Integration Tests, as they use [Testcontainers](https://testcontainers.com/?language=dotnet).
 
 1. Make sure you have followed [Building](#building)
 2. `cd` into the root of the project that contains `ServiceDirectory.sln`
