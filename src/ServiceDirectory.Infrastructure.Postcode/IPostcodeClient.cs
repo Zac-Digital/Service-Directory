@@ -7,6 +7,4 @@ public interface IPostcodeClient
     public Task<bool> ValidatePostcode(string postcode);
     
     public Task<LocationModel?> GetLocation(string postcode);
-
-    public Task<LocationModel?> GetRandomPostcodeLocation();
 }
