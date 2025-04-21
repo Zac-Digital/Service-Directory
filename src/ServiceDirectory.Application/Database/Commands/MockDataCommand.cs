@@ -43,8 +43,8 @@ public class MockDataCommand : IMockDataCommand
             .RuleFor(s => s.Name, f => f.Company.CompanyName())
             .RuleFor(s => s.Description, f => f.Lorem.Paragraph())
             .RuleFor(s => s.Cost, f => f.Commerce.Price(0.00m, 29.99m))
-            .RuleFor(s => s.Contact, f => mockContact.Generate())
-            .RuleFor(s => s.Schedule, f => mockSchedule.Generate())
+            .RuleFor(s => s.Contact, _ => mockContact.Generate())
+            .RuleFor(s => s.Schedule, _ => mockSchedule.Generate())
             .RuleFor(s => s.Locations, f => mockLocation.Generate(f.Random.Number(1, maxLocationsPerService)));
 
         _mockOrganisation = new Faker<Organisation>(locale)
@@ -53,15 +53,18 @@ public class MockDataCommand : IMockDataCommand
             .RuleFor(o => o.Services, f => mockService.Generate(f.Random.Number(1, maxServicesPerOrganisation)));
     }
 
-    public async Task SeedDatabaseWithMockData()
+    public async Task<int> SeedDatabaseWithMockData()
     {
         const int maxNumberOfOrganisations = 32;
 
         _logger.LogInformation("Seeding Database with Mock Data...");
 
         _applicationDbContext.AddOrganisationRange(_mockOrganisation.Generate(maxNumberOfOrganisations));
-        await _applicationDbContext.SaveChangesAsync();
+        int numberOfRowsSaved = await _applicationDbContext.SaveChangesAsync();
 
+        _logger.LogInformation("Created {NumberOfRowsChanged} Rows in the Database...", numberOfRowsSaved);
         _logger.LogInformation("Database Seeded Successfully!");
+
+        return numberOfRowsSaved;
     }
 }

@@ -8,7 +8,7 @@ using ServiceDirectory.Presentation.Api.Endpoints;
 
 namespace ServiceDirectory.Presentation.Api;
 
-public static class Program
+public class Program
 {
     public static void Main(string[] args)
     {
