@@ -11,7 +11,7 @@ namespace ServiceDirectory.Application.IntegrationTest;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly MsSqlContainer _dbContainer = new MsSqlBuilder().WithPassword("QbLJzwGblAR3USLi").Build();
-    protected HttpClient HttpClient;
+    protected HttpClient HttpClient = null!;
 
     public async Task InitializeAsync()
     {
