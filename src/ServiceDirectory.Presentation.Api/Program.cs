@@ -10,7 +10,7 @@ namespace ServiceDirectory.Presentation.Api;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -50,7 +50,16 @@ public class Program
         
         WebApplication app = builder.Build();
         
-        RegisterMinimalEndpoints(app.Services.CreateScope(), app);
+        using (IServiceScope scope = app.Services.CreateScope())
+        {
+            if (builder.Environment.IsDevelopment())
+            {
+                ApplicationDbContext applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                await applicationDbContext.Database.MigrateAsync();
+            }
+            
+            RegisterMinimalEndpoints(scope, app);
+        }
 
         app.UseOpenApi();
         app.MapOpenApi();
@@ -59,7 +68,7 @@ public class Program
         app.UseHttpsRedirection();
         app.UseAuthorization();
         
-        app.Run();
+        await app.RunAsync();
     }
 
     private static void RegisterMinimalEndpoints(IServiceScope scope, WebApplication app)
