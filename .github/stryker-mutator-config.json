@@ -6,7 +6,9 @@
       "html"
     ],
     "mutate": [
-      "!**/*Program.cs"
+      "!**/*Program.cs",
+      "!**/*ApplicationDbContext.cs",
+      "!**/Migrations/*.cs"
     ],
     "ignore-methods": [
       "Log*"
