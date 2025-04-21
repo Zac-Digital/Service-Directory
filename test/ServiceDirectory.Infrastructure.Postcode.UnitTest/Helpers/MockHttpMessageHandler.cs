@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace ServiceDirectory.Infrastructure.Postcode.Unit.Helpers;
+namespace ServiceDirectory.Infrastructure.Postcode.UnitTest.Helpers;
 
 public class MockHttpMessageHandler : HttpMessageHandler
 {

@@ -1,13 +1,16 @@
+using Microsoft.EntityFrameworkCore;
 using NSwag;
+using ServiceDirectory.Application.Database.Commands;
 using ServiceDirectory.Application.Postcode.Queries;
+using ServiceDirectory.Infrastructure.Data;
 using ServiceDirectory.Infrastructure.Postcode;
 using ServiceDirectory.Presentation.Api.Endpoints;
 
 namespace ServiceDirectory.Presentation.Api;
 
-public static class Program
+public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -34,12 +37,29 @@ public static class Program
         });
 
         builder.Services.AddTransient<IPostcodeQuery, PostcodeQuery>();
+        builder.Services.AddTransient<IMockDataCommand, MockDataCommand>();
 
         builder.Services.AddSingleton<MinimalPostcodeEndpoints>();
+        builder.Services.AddSingleton<MinimalServiceEndpoints>();
+
+        builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
+            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution);
+        });
         
         WebApplication app = builder.Build();
         
-        RegisterMinimalEndpoints(app.Services.CreateScope(), app);
+        using (IServiceScope scope = app.Services.CreateScope())
+        {
+            if (builder.Environment.IsDevelopment())
+            {
+                ApplicationDbContext applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                await applicationDbContext.Database.MigrateAsync();
+            }
+            
+            RegisterMinimalEndpoints(scope, app);
+        }
 
         app.UseOpenApi();
         app.MapOpenApi();
@@ -48,11 +68,12 @@ public static class Program
         app.UseHttpsRedirection();
         app.UseAuthorization();
         
-        app.Run();
+        await app.RunAsync();
     }
 
     private static void RegisterMinimalEndpoints(IServiceScope scope, WebApplication app)
     {
         scope.ServiceProvider.GetRequiredService<MinimalPostcodeEndpoints>().Register(app);
+        scope.ServiceProvider.GetRequiredService<MinimalServiceEndpoints>().Register(app);
     }
 }

@@ -10,4 +10,8 @@
       <PackageReference Include="GovUk.Frontend.AspNetCore" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ServiceDirectory.Domain\ServiceDirectory.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -20,7 +20,7 @@
                 <span class="govuk-visually-hidden">Error:</span> Enter a valid postcode
             </p>
         }
-        <input data-testid="Search_INPUT_Primary@(Model.Error ? "_Error" : "")" class="govuk-input @(Model.Error ? "govuk-input--error" : "")" 
+        <input data-testid="Search_INPUT_Primary" class="govuk-input @(Model.Error ? "govuk-input--error" : "")" 
                id="event-name" type="text" aria-describedby="event-name-hint event-name-error" asp-for="Postcode">
     </div>
 

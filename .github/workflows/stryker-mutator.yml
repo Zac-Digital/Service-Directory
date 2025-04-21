@@ -1,6 +1,7 @@
 name: Stryker Mutator Code Analysis
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'src/**'
@@ -42,6 +43,7 @@ jobs:
           cat StrykerOutput/reports/mutation-report.md >> $GITHUB_STEP_SUMMARY
           
       - name: Upload HTML Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: 'Stryker-Report'
