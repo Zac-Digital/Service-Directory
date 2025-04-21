@@ -1,4 +1,3 @@
-using ServiceDirectory.Application.Database.Commands;
 using ServiceDirectory.Application.Postcode.Queries;
 
 namespace ServiceDirectory.Presentation.Api.Endpoints;
@@ -9,13 +8,13 @@ public class MinimalPostcodeEndpoints
     {
         webApplication.MapGet("/postcode/validate/{postcode}",
                 async (string postcode, IPostcodeQuery postcodeQuery) => await postcodeQuery.IsPostcodeValid(postcode))
-            .WithOpenApi();
+            .WithOpenApi()
+            .WithDescription("Check if a postcode is valid.");
 
         webApplication.MapGet("/postcode/location/{postcode}",
             async (string postcode, IPostcodeQuery postcodeQuery) =>
-                await postcodeQuery.GetLocationFromPostcode(postcode)).WithOpenApi();
-
-        webApplication.MapPost("/database/mock",
-            async (IMockDataCommand mockDataCommand) => await mockDataCommand.SeedDatabaseWithMockData()).WithOpenApi();
+                await postcodeQuery.GetLocationFromPostcode(postcode))
+            .WithOpenApi()
+            .WithDescription("Get the user's latitude and longitude from a postcode.");
     }
 }

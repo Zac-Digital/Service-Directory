@@ -12,7 +12,7 @@ using ServiceDirectory.Infrastructure.Data;
 namespace ServiceDirectory.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250419170552_CreateServiceDirectoryDatabase")]
+    [Migration("20250421120003_CreateServiceDirectoryDatabase")]
     partial class CreateServiceDirectoryDatabase
     {
         /// <inheritdoc />
@@ -54,8 +54,8 @@ namespace ServiceDirectory.Infrastructure.Data.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Website")
                         .IsRequired()
@@ -98,9 +98,6 @@ namespace ServiceDirectory.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
 
                     b.Property<string>("TownOrCity")
                         .IsRequired()
@@ -173,8 +170,10 @@ namespace ServiceDirectory.Infrastructure.Data.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Cost")
-                        .HasColumnType("float");
+                    b.Property<string>("Cost")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("Description")
                         .IsRequired()

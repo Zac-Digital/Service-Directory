@@ -6,7 +6,7 @@ public class Service : EntityBase
     
     public string Name { get; init; } = null!;
     public string Description { get; init; } = null!;
-    public double Cost { get; init; }
+    public string Cost { get; init; } = null!;
     
     public int ContactId { get; init; }
     public Contact Contact { get; init; } = null!;

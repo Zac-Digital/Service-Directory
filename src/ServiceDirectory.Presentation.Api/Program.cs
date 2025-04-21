@@ -40,6 +40,7 @@ public static class Program
         builder.Services.AddTransient<IMockDataCommand, MockDataCommand>();
 
         builder.Services.AddSingleton<MinimalPostcodeEndpoints>();
+        builder.Services.AddSingleton<MinimalServiceEndpoints>();
 
         builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
         {
@@ -64,5 +65,6 @@ public static class Program
     private static void RegisterMinimalEndpoints(IServiceScope scope, WebApplication app)
     {
         scope.ServiceProvider.GetRequiredService<MinimalPostcodeEndpoints>().Register(app);
+        scope.ServiceProvider.GetRequiredService<MinimalServiceEndpoints>().Register(app);
     }
 }

@@ -16,6 +16,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     IQueryable<Service> IApplicationDbContext.Services => Services;
 
     public DbSet<Location> Locations { get; init; } = null!;
+    
+    public void AddOrganisationRange(List<Organisation> organisationList) => Organisations.AddRange(organisationList);
+    public Task<int> SaveChangesAsync() => base.SaveChangesAsync();
+
     IQueryable<Location> IApplicationDbContext.Locations => Locations;
 
     public DbSet<Contact> Contacts { get; init; } = null!;
@@ -47,7 +51,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             entity.Property(e => e.OrganisationId).IsRequired();
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Description).IsRequired();
-            entity.Property(e => e.Cost).IsRequired();
+            entity.Property(e => e.Cost).IsRequired().HasMaxLength(5);
         });
 
         modelBuilder.Entity<Service>()
@@ -74,7 +78,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             entity.HasKey(e => e.Id).IsClustered();
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.Email).IsRequired();
-            entity.Property(e => e.Phone).IsRequired().HasMaxLength(10);
+            entity.Property(e => e.Phone).IsRequired().HasMaxLength(20);
             entity.Property(e => e.Website).IsRequired();
         });
         // Contact - Table Definition & Relationship Map
