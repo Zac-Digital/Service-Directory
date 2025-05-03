@@ -4,7 +4,5 @@ namespace ServiceDirectory.Presentation.Web.Client;
 
 public interface IApiClient
 {
-    public Task<bool> IsPostcodeValid(string postcode);
-    
-    public Task<LocationModel?> GetLocationFromPostcode(string postcode);
+    public Task<Location?> GetLocationFromPostcode(string postcode);
 }

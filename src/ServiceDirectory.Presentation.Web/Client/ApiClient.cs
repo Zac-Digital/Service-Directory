@@ -14,29 +14,13 @@ public class ApiClient : IApiClient
         _httpClient = httpClient;
     }
 
-    public async Task<bool> IsPostcodeValid(string postcode)
-    {
-        HttpResponseMessage response = await _httpClient.GetAsync($"/postcode/validate/{postcode}");
-
-        if (response.IsSuccessStatusCode)
-        {
-            return JsonSerializer.Deserialize<bool>(await response.Content.ReadAsStringAsync(),
-                JsonSerializerOptions.Web);
-        }
-
-        _logger.LogError("Error: Request with URL {URL} failed with status code: {StatusCode}",
-            response.RequestMessage?.RequestUri, response.StatusCode);
-
-        return false;
-    }
-
-    public async Task<LocationModel?> GetLocationFromPostcode(string postcode)
+    public async Task<Location?> GetLocationFromPostcode(string postcode)
     {
         HttpResponseMessage response = await _httpClient.GetAsync($"/postcode/location/{postcode}");
 
         if (response.IsSuccessStatusCode)
         {
-            return JsonSerializer.Deserialize<LocationModel>(await response.Content.ReadAsStringAsync(),
+            return JsonSerializer.Deserialize<Location>(await response.Content.ReadAsStringAsync(),
                 JsonSerializerOptions.Web);
         }
 

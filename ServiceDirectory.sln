@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Application.UnitTest", "test\ServiceDirectory.Application.UnitTest\ServiceDirectory.Application.UnitTest.csproj", "{5DB3A22C-09C9-424C-8F93-458B4AC3EDB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Application.IntegrationTest", "test\ServiceDirectory.Application.IntegrationTest\ServiceDirectory.Application.IntegrationTest.csproj", "{031CC3AF-7288-415F-A691-9B9D61104E37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirectory.Presentation.Api.IntegrationTest", "test\ServiceDirectory.Presentation.Api.IntegrationTest\ServiceDirectory.Presentation.Api.IntegrationTest.csproj", "{031CC3AF-7288-415F-A691-9B9D61104E37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

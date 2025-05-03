@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceDirectory.Infrastructure.Data;
-using ServiceDirectory.Presentation.Api;
 using Testcontainers.MsSql;
 
-namespace ServiceDirectory.Application.IntegrationTest;
+namespace ServiceDirectory.Presentation.Api.IntegrationTest;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {

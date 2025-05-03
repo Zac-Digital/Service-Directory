@@ -1,7 +1,7 @@
 using System.Net;
 using Shouldly;
 
-namespace ServiceDirectory.Application.IntegrationTest.Database.Commands;
+namespace ServiceDirectory.Presentation.Api.IntegrationTest.Database.Commands;
 
 public class MockDataCommandTests : CustomWebApplicationFactory
 {

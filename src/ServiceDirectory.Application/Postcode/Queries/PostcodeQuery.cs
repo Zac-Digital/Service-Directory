@@ -12,7 +12,5 @@ public class PostcodeQuery : IPostcodeQuery
         _postcodeClient = postcodeClient;
     }
 
-    public Task<bool> IsPostcodeValid(string postcode) => _postcodeClient.ValidatePostcode(postcode);
-    
-    public Task<LocationModel?> GetLocationFromPostcode(string postcode) => _postcodeClient.GetLocation(postcode);
+    public Task<Location?> GetLocationFromPostcode(string postcode) => _postcodeClient.GetLocation(postcode);
 }
