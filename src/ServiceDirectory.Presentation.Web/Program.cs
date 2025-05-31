@@ -17,7 +17,7 @@ public class Program
 
         builder.Services.AddRazorPages();
         builder.Services.AddGovUkFrontend();
-        
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddOpenApiDocument(options =>
         {
@@ -32,17 +32,19 @@ public class Program
             };
         });
         
-        // TODO: URLs will be stored in appsettings.json
         builder.Services.AddHttpClient<IPostcodeClient, PostcodeClient>(client =>
         {
-            client.BaseAddress = new Uri("https://api.postcodes.io");
+            client.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ExternalServices:PostcodesIo")!);
         });
-        
+
         builder.Services.AddTransient<IPostcodeQuery, PostcodeQuery>();
-        builder.Services.AddTransient<IMockDataCommand, MockDataCommand>();
-        
-        builder.Services.AddSingleton<MinimalServiceEndpoints>();
-        
+
+        if (builder.Environment.IsDevelopment())
+        {
+            builder.Services.AddTransient<IMockDataCommand, MockDataCommand>();
+            builder.Services.AddSingleton<MinimalServiceEndpoints>();
+        }
+
         builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
@@ -50,19 +52,17 @@ public class Program
         });
 
         WebApplication app = builder.Build();
-        
-        using (IServiceScope scope = app.Services.CreateScope())
+
+        if (app.Environment.IsDevelopment())
         {
-            if (builder.Environment.IsDevelopment())
-            {
-                ApplicationDbContext applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                await applicationDbContext.Database.MigrateAsync();
-            }
+            using IServiceScope scope = app.Services.CreateScope();
+            
+            ApplicationDbContext applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            await applicationDbContext.Database.MigrateAsync();
             
             scope.ServiceProvider.GetRequiredService<MinimalServiceEndpoints>().Register(app);
         }
-
-        if (!app.Environment.IsDevelopment())
+        else
         {
             app.UseExceptionHandler("/Error");
             app.UseHsts();
@@ -71,9 +71,9 @@ public class Program
         app.UseOpenApi();
         app.MapOpenApi();
         app.UseSwaggerUi();
-        
+
         app.UseHttpsRedirection();
-        
+
         app.UseRouting();
         app.MapStaticAssets();
         app.MapRazorPages().WithStaticAssets();
