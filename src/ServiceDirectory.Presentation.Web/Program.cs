@@ -17,20 +17,6 @@ public class Program
 
         builder.Services.AddRazorPages();
         builder.Services.AddGovUkFrontend();
-
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddOpenApiDocument(options =>
-        {
-            options.PostProcess = document =>
-            {
-                document.Info = new OpenApiInfo
-                {
-                    Version = "Version 1.0",
-                    Title = "Service Directory - API",
-                    Description = "The API component of the Service Directory Web Application"
-                };
-            };
-        });
         
         builder.Services.AddHttpClient<IPostcodeClient, PostcodeClient>(client =>
         {
@@ -41,6 +27,20 @@ public class Program
 
         if (builder.Environment.IsDevelopment())
         {
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddOpenApiDocument(options =>
+            {
+                options.PostProcess = document =>
+                {
+                    document.Info = new OpenApiInfo
+                    {
+                        Version = "Version 1.0",
+                        Title = "Service Directory - API",
+                        Description = "The API component of the Service Directory Web Application"
+                    };
+                };
+            });
+            
             builder.Services.AddTransient<IMockDataCommand, MockDataCommand>();
             builder.Services.AddSingleton<MinimalServiceEndpoints>();
         }
@@ -61,16 +61,16 @@ public class Program
             await applicationDbContext.Database.MigrateAsync();
             
             scope.ServiceProvider.GetRequiredService<MinimalServiceEndpoints>().Register(app);
+            
+            app.UseOpenApi();
+            app.MapOpenApi();
+            app.UseSwaggerUi();
         }
         else
         {
             app.UseExceptionHandler("/Error");
             app.UseHsts();
         }
-
-        app.UseOpenApi();
-        app.MapOpenApi();
-        app.UseSwaggerUi();
 
         app.UseHttpsRedirection();
 
