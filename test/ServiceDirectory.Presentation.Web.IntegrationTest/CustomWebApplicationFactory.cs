@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ServiceDirectory.Infrastructure.Data;
 using Testcontainers.MsSql;
 
-namespace ServiceDirectory.Presentation.Api.IntegrationTest;
+namespace ServiceDirectory.Presentation.Web.IntegrationTest;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {

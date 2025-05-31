@@ -1,19 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceDirectory.Application.Postcode.Queries;
 using ServiceDirectory.Domain.Postcode;
-using ServiceDirectory.Presentation.Web.Client;
 using ServiceDirectory.Presentation.Web.Pages.Shared;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
 public class Search : ServiceDirectoryBasePage
 {
-    private readonly IApiClient _apiClient;
+    private readonly IPostcodeQuery _postcodeQuery;
 
-    public Search(IApiClient apiClient)
+    public Search(IPostcodeQuery postcodeQuery)
     {
-        _apiClient = apiClient;
+        _postcodeQuery = postcodeQuery;
     }
     
     [Required]
@@ -28,7 +28,7 @@ public class Search : ServiceDirectoryBasePage
             return PageWithErrorState();
         }
         
-        Location? location = await _apiClient.GetLocationFromPostcode(Postcode);
+        Location? location = await _postcodeQuery.GetLocationFromPostcode(Postcode);
 
         if (location is null)
         {

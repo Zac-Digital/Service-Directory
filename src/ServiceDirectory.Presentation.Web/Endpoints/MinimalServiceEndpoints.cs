@@ -1,6 +1,6 @@
 using ServiceDirectory.Application.Database.Commands;
 
-namespace ServiceDirectory.Presentation.Api.Endpoints;
+namespace ServiceDirectory.Presentation.Web.Endpoints;
 
 public class MinimalServiceEndpoints
 {
