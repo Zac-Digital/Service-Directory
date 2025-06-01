@@ -1,0 +1,27 @@
+﻿.search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-results > li:first-child {
+  padding-top: 15px;
+}
+
+.search-results > li {
+  border-bottom: 1px solid #b1b4b6;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.search-results dl {
+  display: flex;
+}
+
+.search-results dl dd {
+  flex-basis: 70%;
+}
+
+.search-results dl dt {
+  flex-basis: 30%;
+}

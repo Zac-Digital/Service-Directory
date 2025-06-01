@@ -17,6 +17,7 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
     |- ServiceDirectory.Infrastructure.Data
     |- ServiceDirectory.Infrastructure.Postcode
     |- ServiceDirectory.Presentation.Web
+    |- ServiceDirectory.Presentation.Web.Node
 ```
 
 - `ServiceDirectory.Application` - Contains business logic on behalf of the Presentation layer(s), interfacing with the
@@ -26,6 +27,7 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
 - `ServiceDirectory.Infrastructure.Data` - Contains external database connections and facilitates CRUD operations.
 - `ServiceDirectory.Infrastructure.Postcode` - Contains an HTTP client repository connecting to [Postcodes.io](https://postcodes.io/)
 - `ServiceDirectory.Presentation.Web` - Contains the user-facing web application layer.
+- `ServiceDirectory.Presentation.Web.Node` - Contains the GOV.UK frontend NPM package, any custom SCSS and a build system to apply it to `ServiceDirectory.Presentation.Web`. 
 
 ## Building, Running & Testing
 
