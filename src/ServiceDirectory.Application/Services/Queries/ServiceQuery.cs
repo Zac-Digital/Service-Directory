@@ -17,7 +17,7 @@ public class ServiceQuery : IServiceQuery
     {
         const double earthRadiusInMetres = 6378100.0d;
         const double degreesToRadians = Math.PI / 180.0d;
-        const double metersToMiles = 0.000621371d;
+        const double metresToMiles = 0.000621371d;
 
         // Haversine Algorithm translated to LINQ
         // Credit to GitHub User https://github.com/hypersolutions
@@ -39,7 +39,7 @@ public class ServiceQuery : IServiceQuery
                     Name = s.Name,
                     Description = s.Description,
                     Cost = s.Cost,
-                    DistanceInMiles = d * metersToMiles,
+                    DistanceInMiles = d * metresToMiles,
                     Schedule = s.Schedule
                 }
             )
