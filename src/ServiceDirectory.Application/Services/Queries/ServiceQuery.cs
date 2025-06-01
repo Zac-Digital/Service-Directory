@@ -17,6 +17,7 @@ public class ServiceQuery : IServiceQuery
     {
         const double earthRadiusInMetres = 6378100.0d;
         const double degreesToRadians = Math.PI / 180.0d;
+        const double metersToMiles = 0.000621371d;
 
         // Haversine Algorithm translated to LINQ
         // Credit to GitHub User https://github.com/hypersolutions
@@ -32,9 +33,16 @@ public class ServiceQuery : IServiceQuery
                               Math.Pow(Math.Sin((longitude - l.Longitude) * degreesToRadians / 2), 2)))
                 where d <= earthRadiusInMetres // TODO: Temporary, will be capped by UI filters
                 orderby d
-                select s
+                select new Service
+                {
+                    OrganisationId = s.OrganisationId,
+                    Name = s.Name,
+                    Description = s.Description,
+                    Cost = s.Cost,
+                    DistanceInMiles = d * metersToMiles,
+                    Schedule = s.Schedule
+                }
             )
-            .Include(s => s.Schedule)
             .Take(10);
 
         foreach (Service service in serviceList)
