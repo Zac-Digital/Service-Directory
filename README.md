@@ -55,6 +55,8 @@ install Microsoft SQL Server 2022 natively — but I recommend going with Docker
 4. Execute `dotnet restore`
 5. Execute `dotnet build --configuration Release --no-restore`
 
+Note: if you wish to update the GOV.UK frontend package, or add custom CSS, this is all done in the `ServiceDirectory.Presentation.Web.Node` project. Please follow the [README](./src/ServiceDirectory.Presentation.Web.Node/README.md) in there for instructions on how to update the main project with relevant changes.
+
 ### Running
 
 1. Make sure you have followed [Building](#building)

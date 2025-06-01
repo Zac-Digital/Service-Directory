@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using NSwag;
 using ServiceDirectory.Application.Database.Commands;
 using ServiceDirectory.Application.Postcode.Queries;
+using ServiceDirectory.Application.Services.Queries;
 using ServiceDirectory.Infrastructure.Data;
 using ServiceDirectory.Infrastructure.Postcode;
 using ServiceDirectory.Presentation.Web.Endpoints;
@@ -24,6 +25,7 @@ public class Program
         });
 
         builder.Services.AddTransient<IPostcodeQuery, PostcodeQuery>();
+        builder.Services.AddTransient<IServiceQuery, ServiceQuery>();
 
         if (builder.Environment.IsDevelopment())
         {

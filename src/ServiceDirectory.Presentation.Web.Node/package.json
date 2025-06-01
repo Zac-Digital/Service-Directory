@@ -1,0 +1,24 @@
+{
+  "name": "servicedirectory.presentation.web.node",
+  "version": "1.0.0",
+  "description": "Contains the GOV.UK frontend packages as well as the build system to copy it into the .NET project located at ServiceDirectory.Presentation.Web",
+  "scripts": {
+    "build": "node esbuild.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zac-Digital/Service-Directory.git"
+  },
+  "author": "Zac-Digital",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zac-Digital/Service-Directory/issues"
+  },
+  "homepage": "https://github.com/Zac-Digital/Service-Directory#readme",
+  "dependencies": {
+    "esbuild": "^0.25.5",
+    "esbuild-sass-plugin": "^3.3.1",
+    "govuk-frontend": "^5.10.2",
+    "sass": "^1.89.1"
+  }
+}

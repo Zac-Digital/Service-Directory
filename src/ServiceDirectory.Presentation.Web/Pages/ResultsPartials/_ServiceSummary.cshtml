@@ -1,0 +1,26 @@
+﻿@model ServiceDirectory.Domain.Service.Service
+
+<li>
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-3">@Model.Name</h2>
+
+    <dl class="govuk-body-s">
+        <dt class="govuk-!-font-weight-bold">Cost</dt>
+        <dd>£@Model.Cost</dd>
+    </dl>
+
+    <dl class="govuk-body-s">
+        <dt class="govuk-!-font-weight-bold">Opens At</dt>
+        <dd>@Model.Schedule.OpeningTime</dd>
+    </dl>
+
+    <dl class="govuk-body-s">
+        <dt class="govuk-!-font-weight-bold">Closes At</dt>
+        <dd>@Model.Schedule.ClosingTime</dd>
+    </dl>
+
+    <dl class="govuk-body-s">
+        <dt class="govuk-!-font-weight-bold">Days Open</dt>
+        <dd>@Model.Schedule.DaysOfWeek</dd>
+    </dl>
+
+</li>
