@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ServiceDirectory.Domain.Service;
+﻿using ServiceDirectory.Domain.Service;
 using ServiceDirectory.Infrastructure.Data;
 
 namespace ServiceDirectory.Application.Services.Queries;
