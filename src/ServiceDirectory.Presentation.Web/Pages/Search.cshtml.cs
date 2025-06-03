@@ -35,7 +35,7 @@ public class Search : ServiceDirectoryBasePage
             return PageWithErrorState();
         }
         
-        return RedirectToPage("/Results", new { location.Postcode, location.Latitude, location.Longitude });
+        return RedirectToPage("/Results", new { location.Postcode, location.Latitude, location.Longitude, CurrentPage = 1 });
     }
 
     private PageResult PageWithErrorState()

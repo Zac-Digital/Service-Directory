@@ -1,8 +1,8 @@
-﻿using ServiceDirectory.Domain.Result;
+﻿using ServiceDirectory.Domain.ServiceList;
 
 namespace ServiceDirectory.Application.Services.Queries;
 
 public interface IServiceQuery
 {
-    public Result GetServicesByLocation(double latitude, double longitude);
+    public ServiceList GetServicesByLocation(double latitude, double longitude, int pageNumber);
 }

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ServiceDirectory.Application.Services.Queries;
-using ServiceDirectory.Domain.Result;
 using ServiceDirectory.Domain.Service;
+using ServiceDirectory.Domain.ServiceList;
 using ServiceDirectory.Presentation.Web.Pages.Shared;
 using Location = ServiceDirectory.Domain.Postcode.Location;
 
@@ -16,6 +16,7 @@ public class Results : ServiceDirectoryBasePage
     public List<Service> Services { get; private set; } = [];
     public bool LocationHasAtLeastOneService { get; private set; }
     
+    [BindProperty(SupportsGet = true)]
     public int CurrentPage { get; set; }
     public int TotalPages { get; set; }
 
@@ -25,11 +26,12 @@ public class Results : ServiceDirectoryBasePage
         _serviceQuery = serviceQuery;
     }
     
-    public IActionResult OnGet(Location location)
+    public IActionResult OnGet(Location location, int currentPage)
     {
+        CurrentPage = currentPage;
         Postcode = location.Postcode;
         
-        Result searchResult = _serviceQuery.GetServicesByLocation(location.Latitude, location.Longitude);
+        ServiceList searchResult = _serviceQuery.GetServicesByLocation(location.Latitude, location.Longitude, CurrentPage);
         
         Services = searchResult.Services.ToList();
         LocationHasAtLeastOneService = Services.Count > 0;

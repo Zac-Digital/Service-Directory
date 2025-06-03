@@ -1,4 +1,4 @@
-﻿using ServiceDirectory.Domain.Result;
+﻿using ServiceDirectory.Domain.ServiceList;
 using ServiceDirectory.Domain.Service;
 using ServiceDirectory.Infrastructure.Data;
 
@@ -13,7 +13,7 @@ public class ServiceQuery : IServiceQuery
         _applicationDbContext = applicationDbContext;
     }
 
-    public Result GetServicesByLocation(double latitude, double longitude)
+    public ServiceList GetServicesByLocation(double latitude, double longitude, int pageNumber)
     {
         const double earthRadiusInMetres = 6378100.0d;
         const double degreesToRadians = Math.PI / 180.0d;
@@ -44,6 +44,6 @@ public class ServiceQuery : IServiceQuery
             }
         );
 
-        return new Result(serviceList.Take(10), serviceList.Count());
+        return new ServiceList(serviceList.Skip((pageNumber - 1) * 10).Take(10), serviceList.Count());
     }
 }
