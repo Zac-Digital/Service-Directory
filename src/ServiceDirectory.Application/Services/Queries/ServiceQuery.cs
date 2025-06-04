@@ -31,7 +31,7 @@ public class ServiceQuery : IServiceQuery
                           Math.Cos(l.Latitude * degreesToRadians) *
                           Math.Cos(latitude * degreesToRadians) *
                           Math.Pow(Math.Sin((longitude - l.Longitude) * degreesToRadians / 2), 2)))
-            where d <= earthRadiusInMetres // TODO: Temporary, will be capped by UI filters
+            where d <= 32186.9 // TODO: Temporary, will be capped by UI filters
             orderby d
             select new Service
             {
@@ -43,7 +43,10 @@ public class ServiceQuery : IServiceQuery
                 Schedule = s.Schedule
             }
         );
+        
+        int totalCount = serviceList.Count();
+        List<Service> result = serviceList.Skip((pageNumber - 1) * 10).Take(10).ToList();
 
-        return new ServiceList(serviceList.Skip((pageNumber - 1) * 10).Take(10), serviceList.Count());
+        return new ServiceList(result, totalCount);
     }
 }

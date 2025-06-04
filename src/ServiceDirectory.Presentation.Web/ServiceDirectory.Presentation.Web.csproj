@@ -23,4 +23,11 @@
       <ProjectReference Include="..\ServiceDirectory.Domain\ServiceDirectory.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_Ellipses.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_NextPage.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_PageNumber.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_PreviousPage.cshtml" />
+    </ItemGroup>
+
 </Project>

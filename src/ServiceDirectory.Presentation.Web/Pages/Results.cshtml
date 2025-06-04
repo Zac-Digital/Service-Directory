@@ -2,7 +2,7 @@
 @using ServiceDirectory.Domain.Service
 @model ServiceDirectory.Presentation.Web.Pages.Results
 @{
-    ViewData["Title"] = "Results Page - GOV.UK";
+    ViewData["Title"] = $"Search Results - Page {Model.CurrentPage} of {Model.TotalPages} - GOV.UK";
 }
 
 @if (Model.LocationHasAtLeastOneService)
@@ -17,18 +17,7 @@
     
     @if (Model.TotalPages > 1)
     {
-        @if (Model.CurrentPage == 1)
-        {
-            @await Html.PartialAsync("ResultsPartials/Pagination/_FirstPage")
-        }
-        else if (Model.CurrentPage == Model.TotalPages)
-        {
-            @await Html.PartialAsync("ResultsPartials/Pagination/_LastPage")
-        }
-        else
-        {
-            @await Html.PartialAsync("ResultsPartials/Pagination/_MiddlePage")
-        }
+        @await Html.PartialAsync("ResultsPartials/_Pagination")
     }
     
 }
