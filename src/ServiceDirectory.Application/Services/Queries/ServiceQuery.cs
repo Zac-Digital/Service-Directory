@@ -23,7 +23,7 @@ public class ServiceQuery : IServiceQuery
         const double twentyMilesInMetres = 32186.9d; // TODO: Temporary, will be capped by UI filters
 
         const double latitudeDelta = twentyMilesInMetres / metresPerRadian; // TODO: Temporary, will be capped by UI filters
-        double longitudeDelta = twentyMilesInMetres / (111320.0 * Math.Cos(latitude * degreesToRadians));
+        double longitudeDelta = twentyMilesInMetres / (metresPerRadian * Math.Cos(latitude * degreesToRadians));
 
         double minLatitude = latitude - latitudeDelta;
         double maxLatitude = latitude + latitudeDelta;
