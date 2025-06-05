@@ -7,8 +7,8 @@
 
 @if (Model.LocationHasAtLeastOneService)
 {
-    <h1 class="govuk-heading-xl">Search results for @Model.Postcode</h1>
-    <ul class="search-results">
+    <h1 data-testid="Results_HEADER_Primary" class="govuk-heading-xl">Search results for @Model.Postcode</h1>
+    <ul data-testid="Results_LIST_Primary" class="search-results">
         @foreach (Service service in Model.Services)
         {
             @await Html.PartialAsync("ResultsPartials/_ServiceSummary", service)

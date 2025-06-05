@@ -1,25 +1,25 @@
 ﻿@using System.Globalization
 @model ServiceDirectory.Domain.Service.Service
 
-<li>
-    <h2 class="govuk-heading-s govuk-!-margin-bottom-3">@Model.Name <span class="govuk-!-font-weight-regular">(@Model.DistanceInMiles.ToString("F1", CultureInfo.CurrentCulture) miles)</span></h2>
+<li data-testid="Results_LIST_Secondary">
+    <h2 data-testid="Results_HEADER_Service-Name" class="govuk-heading-s govuk-!-margin-bottom-3">@Model.Name <span class="govuk-!-font-weight-regular">(@Model.DistanceInMiles.ToString("F1", CultureInfo.CurrentCulture) miles)</span></h2>
 
-    <dl class="govuk-body-s">
+    <dl data-testid="Results_BODY_Service-Cost" class="govuk-body-s">
         <dt class="govuk-!-font-weight-bold">Cost</dt>
         <dd>£@Model.Cost</dd>
     </dl>
 
-    <dl class="govuk-body-s">
+    <dl data-testid="Results_BODY_Service-OpensAt" class="govuk-body-s">
         <dt class="govuk-!-font-weight-bold">Opens At</dt>
         <dd>@Model.Schedule.OpeningTime</dd>
     </dl>
 
-    <dl class="govuk-body-s">
+    <dl data-testid="Results_BODY_Service-ClosesAt" class="govuk-body-s">
         <dt class="govuk-!-font-weight-bold">Closes At</dt>
         <dd>@Model.Schedule.ClosingTime</dd>
     </dl>
 
-    <dl class="govuk-body-s">
+    <dl data-testid="Results_BODY_Service-DaysOpen" class="govuk-body-s">
         <dt class="govuk-!-font-weight-bold">Days Open</dt>
         <dd>@Model.Schedule.DaysOfWeek</dd>
     </dl>

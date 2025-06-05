@@ -5,7 +5,7 @@ namespace ServiceDirectory.Presentation.Web.E2E;
 [Trait("Category", "E2E")]
 public abstract class BasePageTest : PageTest
 {
-    private const string BaseUrl = "https://localhost:7024";
+    protected const string BaseUrl = "https://localhost:7024";
 
     protected string PageRelativeUrl { get; init; } = null!;
     protected string PageTitle { get; init; } = null!;
@@ -19,7 +19,7 @@ public abstract class BasePageTest : PageTest
     }
 
     [Fact]
-    protected async Task HasTitle() => await Expect(Page).ToHaveTitleAsync(PageTitle);
+    protected virtual async Task HasTitle() => await Expect(Page).ToHaveTitleAsync(PageTitle);
 
     [Fact]
     public async Task HasContent()

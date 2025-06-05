@@ -1,11 +1,11 @@
 ﻿@model ServiceDirectory.Presentation.Web.Pages.Results
 
 <form method="post">
-    <nav class="govuk-pagination govuk-pagination--block" aria-label="Pagination">
+    <nav data-testid="Results_NAVIGATION_Primary" class="govuk-pagination govuk-pagination--block" aria-label="Pagination">
         @if (Model.CurrentPage > 1)
         {
-            <div class="govuk-pagination__prev">
-                <a class="govuk-link govuk-pagination__link" href="@Model.GetNavigationHref(-1)" rel="prev">
+            <div data-testid="Results_NAVIGATION_Previous-Page" class="govuk-pagination__prev">
+                <a data-testid="Results_NAVIGATION_LINK_Previous-Page" class="govuk-link govuk-pagination__link" href="@Model.GetNavigationHref(-1)" rel="prev">
                     <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg"
                          height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
                         <path
@@ -21,8 +21,8 @@
         }
         @if (Model.CurrentPage < Model.TotalPages)
         {
-            <div class="govuk-pagination__next">
-                <a class="govuk-link govuk-pagination__link" href="@Model.GetNavigationHref(1)" rel="next">
+            <div data-testid="Results_NAVIGATION_Next-Page" class="govuk-pagination__next">
+                <a data-testid="Results_NAVIGATION_LINK_Next-Page" class="govuk-link govuk-pagination__link" href="@Model.GetNavigationHref(1)" rel="next">
                     <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg"
                          height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
                         <path
