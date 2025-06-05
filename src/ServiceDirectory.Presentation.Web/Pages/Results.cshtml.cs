@@ -1,6 +1,3 @@
-using System.Collections.Specialized;
-using System.Web;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using ServiceDirectory.Application.Services.Queries;
@@ -17,7 +14,7 @@ public class Results : ServiceDirectoryBasePage
 
     public string? Postcode { get; private set; }
 
-    public IEnumerable<Service> Services { get; private set; } = [];
+    public List<Service> Services { get; private set; } = [];
     public bool LocationHasAtLeastOneService { get; private set; }
 
     [BindProperty(SupportsGet = true)] public int CurrentPage { get; set; }
@@ -38,7 +35,7 @@ public class Results : ServiceDirectoryBasePage
             _serviceQuery.GetServicesByLocation(location.Latitude, location.Longitude, CurrentPage);
 
         Services = searchResult.Services;
-        LocationHasAtLeastOneService = Services.Any();
+        LocationHasAtLeastOneService = Services.Count != 0;
 
         TotalPages = (searchResult.Total + 10 - 1) / 10;
 

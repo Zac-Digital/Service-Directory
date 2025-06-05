@@ -19,6 +19,8 @@ public class ServiceQuery : IServiceQuery
         const double degreesToRadians = Math.PI / 180.0d;
         const double metresToMiles = 0.000621371d;
         const double metresPerRadian = 111320.0d;
+        
+        double cosLatitudeDegreesToRadians = Math.Cos(latitude * degreesToRadians);
 
         const double twentyMilesInMetres = 32186.9d; // TODO: Temporary, will be capped by UI filters
 
@@ -42,7 +44,7 @@ public class ServiceQuery : IServiceQuery
             let d = 2 * earthRadiusInMetres * Math.Asin(
                 Math.Sqrt(Math.Pow(Math.Sin((latitude - l.Latitude) * degreesToRadians / 2), 2) +
                           Math.Cos(l.Latitude * degreesToRadians) *
-                          Math.Cos(latitude * degreesToRadians) *
+                          cosLatitudeDegreesToRadians *
                           Math.Pow(Math.Sin((longitude - l.Longitude) * degreesToRadians / 2), 2)))
             where d <= twentyMilesInMetres // TODO: Temporary, will be capped by UI filters
             orderby d
@@ -58,7 +60,7 @@ public class ServiceQuery : IServiceQuery
         );
 
         int totalCount = serviceList.Count();
-        IEnumerable<Service> result = serviceList.Skip((pageNumber - 1) * 10).Take(10);
+        List<Service> result = serviceList.Skip((pageNumber - 1) * 10).Take(10).ToList();
 
         return new ServiceList(result, totalCount);
     }

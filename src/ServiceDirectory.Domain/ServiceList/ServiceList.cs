@@ -1,3 +1,3 @@
 namespace ServiceDirectory.Domain.ServiceList;
 
-public record ServiceList(IEnumerable<Service.Service> Services, int Total);
+public record ServiceList(List<Service.Service> Services, int Total);
