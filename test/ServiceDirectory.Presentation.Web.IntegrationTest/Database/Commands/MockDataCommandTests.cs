@@ -3,7 +3,7 @@ using Shouldly;
 
 namespace ServiceDirectory.Presentation.Web.IntegrationTest.Database.Commands;
 
-public class MockDataCommandTests : CustomWebApplicationFactory
+public class MockDataCommandTests : BaseIntegrationTest
 {
     [Fact]
     public async Task ServiceSeedData_Should_SeedData()

@@ -29,6 +29,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>, IAsyn
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        builder.UseEnvironment("Development");
+        
         builder.ConfigureServices(services =>
         {
             ServiceDescriptor? context =
