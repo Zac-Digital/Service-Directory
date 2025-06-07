@@ -8,9 +8,9 @@ on:
       - 'test/**'
       - '.github/workflows/stryker-mutator.yml'
 
-#concurrency:
-#  group: "${{ github.workflow }}-${{ github.ref }}"
-#  cancel-in-progress: true
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   build-and-test:
