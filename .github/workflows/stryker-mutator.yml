@@ -28,16 +28,16 @@ jobs:
           dotnet-version: '9.x'
           
       - name: Install Stryker Mutator
-        shell: bash
+        shell: pwsh
         run: dotnet tool install --global dotnet-stryker
 
       - name: Run Stryker Mutator
-        shell: bash
-        run: dotnet stryker --configuration Release -f .github/stryker-mutator-config.json -O StrykerOutput --skip-version-check --concurrency `nproc`
+        shell: pwsh
+        run: dotnet stryker --configuration Release -f .github/stryker-mutator-config.json -O StrykerOutput --skip-version-check --concurrency $env:NUMBER_OF_PROCESSORS
         
       - name: Generate Markdown Report
         if: always()
-        shell: bash
+        shell: pwsh
         run: |
           echo '### Stryker Mutation Report 🚀' >> $GITHUB_STEP_SUMMARY
           cat StrykerOutput/reports/mutation-report.md >> $GITHUB_STEP_SUMMARY
