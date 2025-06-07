@@ -15,8 +15,7 @@ concurrency:
 jobs:
   build-and-test:
     name: Stryker Mutator
-    runs-on: 
-      group: Service-Directory_Runner
+    runs-on: macos-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
