@@ -15,7 +15,8 @@ concurrency:
 jobs:
   build-and-test:
     name: Stryker Mutator
-    runs-on: ubuntu-24.04
+    runs-on: 
+      group: Service-Directory_Runner
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
