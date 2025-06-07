@@ -15,7 +15,7 @@ concurrency:
 jobs:
   build-and-test:
     name: Stryker Mutator
-    runs-on: windows-2025
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -28,16 +28,16 @@ jobs:
           dotnet-version: '9.x'
           
       - name: Install Stryker Mutator
-        shell: pwsh
+        shell: bash
         run: dotnet tool install --global dotnet-stryker
 
       - name: Run Stryker Mutator
-        shell: pwsh
-        run: dotnet stryker --configuration Release -f .github/stryker-mutator-config.json -O StrykerOutput --skip-version-check --concurrency $env:NUMBER_OF_PROCESSORS
+        shell: bash
+        run: dotnet stryker --configuration Release -f .github/stryker-mutator-config.json -O StrykerOutput --skip-version-check --concurrency `nproc`
         
       - name: Generate Markdown Report
         if: always()
-        shell: pwsh
+        shell: bash
         run: |
           echo '### Stryker Mutation Report 🚀' >> $GITHUB_STEP_SUMMARY
           cat StrykerOutput/reports/mutation-report.md >> $GITHUB_STEP_SUMMARY
