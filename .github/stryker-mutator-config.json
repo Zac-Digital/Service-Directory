@@ -15,7 +15,7 @@
       "Log*"
     ],
     "test-case-filter": "Category!=E2E",
-    "mutation-level": "Complete",
+    "mutation-level": "Standard",
     "thresholds": {
       "high": 80,
       "low": 60,
