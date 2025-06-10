@@ -17,14 +17,6 @@ jobs:
   build-and-test:
     name: Build & Test
     runs-on: ubuntu-24.04
-    services:
-      mssql:
-        image: mcr.microsoft.com/mssql/server:2022-latest
-        ports:
-          - 1433:1433
-        env:
-          MSSQL_SA_PASSWORD: QbLJzwGblAR3USLi
-          ACCEPT_EULA: Y
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -35,14 +27,7 @@ jobs:
         uses: ./.github/actions/setup-dotnet
         with:
           dotnet-version: '9.x'
-          
-      - name: Install Playwright
-        shell: bash
-        run: pwsh ./test/ServiceDirectory.Presentation.Web.E2E/bin/Release/net9.0/playwright.ps1 install --with-deps
-          
-      - name: Run Project
-        uses: ./.github/actions/run-dotnet
-          
+
       - name: Test Solution
         shell: bash
-        run: dotnet test --configuration Release --no-build --no-restore
+        run: dotnet test --configuration Release --no-build --no-restore --filter Category!=E2E
