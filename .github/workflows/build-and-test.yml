@@ -25,11 +25,6 @@ jobs:
         env:
           MSSQL_SA_PASSWORD: QbLJzwGblAR3USLi
           ACCEPT_EULA: Y
-        volumes:
-          - ./sql/data:/var/opt/mssql/data
-          - ./sql/log:/var/opt/mssql/log
-          - ./sql/secrets:/var/opt/mssql/secrets
-          - ./sql/backup:/var/opt/mssql/backup
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
