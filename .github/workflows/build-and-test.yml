@@ -28,6 +28,10 @@ jobs:
         with:
           dotnet-version: '9.x'
           
+      - name: Run Project
+        shell: bash
+        run: dotnet run --configuration Release --no-build --no-restore --project ./src/ServiceDirectory.Presentation.Web/ServiceDirectory.Presentation.Web.csproj
+          
       - name: Test Solution
         shell: bash
-        run: dotnet test --configuration Release --no-build --no-restore --filter Category!=E2E
+        run: dotnet test --configuration Release --no-build --no-restore
