@@ -1,7 +1,7 @@
 name: Build & Test Solution
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   push:
     paths:
       - 'src/**'
@@ -17,6 +17,19 @@ jobs:
   build-and-test:
     name: Build & Test
     runs-on: ubuntu-24.04
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+          - 1433
+        env:
+          MSSQL_SA_PASSWORD: QbLJzwGblAR3USLi
+          ACCEPT_EULA: Y
+        volumes:
+          - ./sql/data:/var/opt/mssql/data
+          - ./sql/log:/var/opt/mssql/log
+          - ./sql/secrets:/var/opt/mssql/secrets
+          - ./sql/backup:/var/opt/mssql/backup
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -27,11 +40,11 @@ jobs:
         uses: ./.github/actions/setup-dotnet
         with:
           dotnet-version: '9.x'
-          
+
       - name: Run Project
         shell: bash
         run: dotnet run --configuration Release --no-build --no-restore --project ./src/ServiceDirectory.Presentation.Web/ServiceDirectory.Presentation.Web.csproj
-          
+
       - name: Test Solution
         shell: bash
         run: dotnet test --configuration Release --no-build --no-restore
