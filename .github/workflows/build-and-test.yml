@@ -36,6 +36,10 @@ jobs:
         with:
           dotnet-version: '9.x'
           
+      - name: Install Playwright
+        shell: bash
+        run: pwsh ./test/ServiceDirectory.Presentation.Web.E2E/bin/Release/net9.0/playwright.ps1 install --with-deps
+          
       - name: Run Project
         uses: ./.github/actions/run-dotnet
           
