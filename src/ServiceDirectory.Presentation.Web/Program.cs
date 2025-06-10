@@ -75,3 +75,5 @@ app.MapStaticAssets();
 app.MapRazorPages().WithStaticAssets();
 
 await app.RunAsync();
+
+public abstract partial class Program;
