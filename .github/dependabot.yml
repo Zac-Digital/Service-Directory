@@ -14,7 +14,7 @@ updates:
       interval: "daily"
     target-branch: "development"
     groups:
-      github-actions:
+      github-actions-development:
         patterns:
           - '*'
 
@@ -32,6 +32,24 @@ updates:
       interval: "daily"
     target-branch: "development"
     groups:
-      nuget:
+      nuget-development:
+        patterns:
+          - '*'
+
+  - package-ecosystem: "npm"
+    directory: "/src/ServiceDirectory.Presentation.Web.Node"
+    schedule:
+      interval: "daily"
+    groups:
+      npm:
+        patterns:
+          - '*'
+  - package-ecosystem: "npm"
+    directory: "/src/ServiceDirectory.Presentation.Web.Node"
+    schedule:
+      interval: "daily"
+    target-branch: "development"
+    groups:
+      npm-development:
         patterns:
           - '*'
