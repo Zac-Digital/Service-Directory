@@ -8,6 +8,7 @@ on:
       - 'test/**'
       - 'Directory.Packages.props'
       - '.github/workflows/build-and-test.yml'
+      - '.github/actions/setup-dotnet/action.yml'
 
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
