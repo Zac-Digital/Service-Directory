@@ -4,52 +4,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    groups:
-      main:
-        patterns:
-          - '*'
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    target-branch: "development"
-    groups:
-      development:
-        patterns:
-          - '*'
 
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
       interval: "daily"
-    groups:
-      main:
-        patterns:
-          - '*'
-  - package-ecosystem: "nuget"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    target-branch: "development"
-    groups:
-      development:
-        patterns:
-          - '*'
 
   - package-ecosystem: "npm"
     directory: "/src/ServiceDirectory.Presentation.Web.Node"
     schedule:
       interval: "daily"
-    groups:
-      main:
-        patterns:
-          - '*'
-  - package-ecosystem: "npm"
-    directory: "/src/ServiceDirectory.Presentation.Web.Node"
-    schedule:
-      interval: "daily"
-    target-branch: "development"
-    groups:
-      development:
-        patterns:
-          - '*'
