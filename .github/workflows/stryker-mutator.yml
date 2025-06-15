@@ -7,6 +7,8 @@ on:
       - 'src/**'
       - 'test/**'
       - '.github/workflows/stryker-mutator.yml'
+      - '.github/actions/setup-dotnet/action.yml'
+      - '.github/stryker-mutator-config.json'
 
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"

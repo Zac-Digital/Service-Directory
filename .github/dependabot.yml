@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "daily"
     groups:
-      github-actions:
+      main:
         patterns:
           - '*'
   - package-ecosystem: "github-actions"
@@ -14,7 +14,7 @@ updates:
       interval: "daily"
     target-branch: "development"
     groups:
-      github-actions-development:
+      development:
         patterns:
           - '*'
 
@@ -23,7 +23,7 @@ updates:
     schedule:
       interval: "daily"
     groups:
-      nuget:
+      main:
         patterns:
           - '*'
   - package-ecosystem: "nuget"
@@ -32,7 +32,7 @@ updates:
       interval: "daily"
     target-branch: "development"
     groups:
-      nuget-development:
+      development:
         patterns:
           - '*'
 
@@ -41,7 +41,7 @@ updates:
     schedule:
       interval: "daily"
     groups:
-      npm:
+      main:
         patterns:
           - '*'
   - package-ecosystem: "npm"
@@ -50,6 +50,6 @@ updates:
       interval: "daily"
     target-branch: "development"
     groups:
-      npm-development:
+      development:
         patterns:
           - '*'
