@@ -28,5 +28,13 @@ public class BaseIntegrationTest : CustomWebApplicationFactory
         return dbContext;
     }
 
+    protected async Task<ApplicationDbContext> GetDbContextWithOneOrganisationWithMultipleServices()
+    {
+        ApplicationDbContext dbContext = GetDbContext();
+        dbContext.AddOrganisationRange([TestData.TestOrganisationWithManyServices()]);
+        await dbContext.SaveChangesAsync();
+        return dbContext;
+    }
+
     protected ApplicationDbContext GetDbContextWithNoOrganisationWithNoService() => GetDbContext();
 }
