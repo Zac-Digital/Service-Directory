@@ -1,13 +1,34 @@
 @page
+@using ServiceDirectory.Domain.Service
 @model ServiceDirectory.Presentation.Web.Pages.Results
 @{
-    ViewData["Title"] = "Search Page - GOV.UK";
+    ViewData["Title"] = $"Search Results - Page {Model.CurrentPage} of {Model.TotalPages} - GOV.UK";
 }
 
-<h1 class="govuk-heading-xl">Placeholder</h1>
+@if (Model.LocationHasAtLeastOneService)
+{
+    <h1 data-testid="Results_HEADER_Primary" class="govuk-heading-xl">Search results for @Model.Postcode</h1>
 
-<ul class="govuk-list govuk-list--bullet">
-    <li>POSTCODE = @Model.Location.Postcode</li>
-    <li>LATITUDE = @Model.Location.Latitude</li>
-    <li>LONGITUDE = @Model.Location.Longitude</li>
-</ul>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+            @await Html.PartialAsync("ResultsPartials/_Filters")
+        </div>
+        <div class="govuk-grid-column-two-thirds">
+            <ul data-testid="Results_LIST_Primary" class="search-results">
+                @foreach (Service service in Model.Services)
+                {
+                    @await Html.PartialAsync("ResultsPartials/_ServiceSummary", service)
+                }
+            </ul>
+        </div>
+    </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        @await Html.PartialAsync("ResultsPartials/_Pagination")
+    }
+}
+else
+{
+    @await Html.PartialAsync("ResultsPartials/_NoResults")
+}

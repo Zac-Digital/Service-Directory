@@ -1,31 +1,59 @@
 using Microsoft.AspNetCore.Mvc;
-using ServiceDirectory.Domain.Postcode;
-using ServiceDirectory.Presentation.Web.Client;
+using Microsoft.Extensions.Primitives;
+using ServiceDirectory.Application.Services.Queries;
+using ServiceDirectory.Domain.Service;
+using ServiceDirectory.Domain.ServiceList;
 using ServiceDirectory.Presentation.Web.Pages.Shared;
+using Location = ServiceDirectory.Domain.Postcode.Location;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
 public class Results : ServiceDirectoryBasePage
 {
-    private readonly IApiClient _apiClient;
+    private readonly IServiceQuery _serviceQuery;
 
-    public LocationModel Location { get; private set; } = null!;
+    public string? Postcode { get; private set; }
 
-    public Results(IApiClient apiClient)
+    public List<Service> Services { get; private set; } = [];
+    public bool LocationHasAtLeastOneService { get; private set; }
+
+    [BindProperty(SupportsGet = true)] public int CurrentPage { get; set; }
+    public int TotalPages { get; set; }
+
+    public Results(IServiceQuery serviceQuery)
     {
-        _apiClient = apiClient;
+        CurrentPage = 1;
+        _serviceQuery = serviceQuery;
     }
 
-    public async Task<IActionResult> OnGetAsync(string postcode)
+    public IActionResult OnGet(Location location, int currentPage)
     {
-        LocationModel? location = await _apiClient.GetLocationFromPostcode(postcode);
-        
-        if (location is null)
-        {
-            return Redirect("/Error");
-        }
-        
-        Location = location;
+        CurrentPage = currentPage;
+        Postcode = location.Postcode;
+
+        ServiceList searchResult =
+            _serviceQuery.GetServicesByLocation(location.Latitude, location.Longitude, CurrentPage);
+
+        Services = searchResult.Services;
+        LocationHasAtLeastOneService = Services.Count != 0;
+
+        TotalPages = (searchResult.Total + 10 - 1) / 10;
+
         return Page();
+    }
+
+    public string? GetNavigationHref(int pageOffset)
+    {
+        RouteValueDictionary routeValues = new RouteValueDictionary();
+    
+        foreach (KeyValuePair<string, StringValues> queryParameter in Request.Query)
+        {
+            routeValues[queryParameter.Key] = queryParameter.Value.ToString();
+        }
+    
+        routeValues[nameof(CurrentPage)] = (CurrentPage + pageOffset).ToString();
+    
+        return Url.Page("/Results", routeValues);
+
     }
 }

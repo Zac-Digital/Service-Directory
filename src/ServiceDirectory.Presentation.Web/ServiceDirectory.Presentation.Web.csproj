@@ -8,10 +8,28 @@
 
     <ItemGroup>
       <PackageReference Include="GovUk.Frontend.AspNetCore" />
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+      <PackageReference Include="NSwag.AspNetCore" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ServiceDirectory.Application\ServiceDirectory.Application.csproj" />
       <ProjectReference Include="..\ServiceDirectory.Domain\ServiceDirectory.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_Ellipses.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_NextPage.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_PageNumber.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_PreviousPage.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\application.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\application.css.map" />
     </ItemGroup>
 
 </Project>

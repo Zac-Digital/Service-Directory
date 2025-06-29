@@ -1,12 +1,26 @@
-﻿@{
+﻿@section Head
+{
+    <link rel="stylesheet" as="style" href="~/css/application.css" asp-append-version="true">
+}
+
+@{
+    // Referenced GOV.UK Design System: https://frontend.design-system.service.gov.uk/installing-with-npm/#get-the-css-assets-and-javascript-working
+    
     // ReSharper Disable Razor.LayoutNotResolved
     Layout = "_GovUkPageTemplate";
     // ReSharper Restore Razor.LayoutNotResolved
 }
 
-@section Header 
+@section Header
 {
     @await Html.PartialAsync("_Header")
+}
+
+@section BeforeContent
+{
+    <script>
+        document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
+    </script>
 }
 
 @RenderBody()
@@ -14,4 +28,16 @@
 @section Footer
 {
     @await Html.PartialAsync("_Footer")
+}
+
+@section BodyEnd
+{
+    <script type="module" src="js/govuk-frontend.min.js"></script>
+    <script type="module" src="js/moj-frontend.min.js"></script>
+    <script type="module">
+        import * as GovUkFrontend from '/js/govuk-frontend.min.js'
+        import * as MojFrontend from '/js/moj-frontend.min.js'
+        GovUkFrontend.initAll();
+        MojFrontend.initAll();
+    </script>
 }

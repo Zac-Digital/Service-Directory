@@ -18,41 +18,7 @@ public class PostcodeClient : IPostcodeClient
         _httpClient = httpClient;
     }
 
-    public async Task<bool> ValidatePostcode(string postcode)
-    {
-        // Stryker disable once all : External service is mocked in testing so URL does not matter
-        HttpResponseMessage response = await _httpClient.GetAsync($"/postcodes/{postcode}/validate");
-
-        if (!response.IsSuccessStatusCode)
-        {
-            _logger.LogError("Error: Request with URL {URL} failed with status code: {StatusCode}",
-                response.RequestMessage?.RequestUri, response.StatusCode);
-            return false;
-        }
-
-        ValidateModel? model = JsonSerializer.Deserialize<ValidateModel>(await response.Content.ReadAsStringAsync(),
-            JsonSerializerOptions.Web);
-
-        if (model is null)
-        {
-            _logger.LogError("Error: Attempting to deserialise result returned: NULL");
-            return false;
-        }
-
-        if (model.Status != StatusCodeOk)
-        {
-            _logger.LogWarning("Warning: Response was successful, but external provider had an error: {PostcodeStatus}",
-                model.Status);
-
-            return false;
-        }
-
-        _logger.LogInformation("Success: Postcode validation returned: {Result}", model.Result);
-
-        return model.Result;
-    }
-
-    public async Task<LocationModel?> GetLocation(string postcode)
+    public async Task<Location?> GetLocation(string postcode)
     {
         // Stryker disable once all : External service is mocked in testing so URL does not matter
         HttpResponseMessage response = await _httpClient.GetAsync($"/postcodes/{postcode}");

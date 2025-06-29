@@ -1,35 +1,46 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using ServiceDirectory.Presentation.Web.Client;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceDirectory.Application.Postcode.Queries;
+using ServiceDirectory.Domain.Postcode;
 using ServiceDirectory.Presentation.Web.Pages.Shared;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
 public class Search : ServiceDirectoryBasePage
 {
-    private readonly IApiClient _apiClient;
+    private readonly IPostcodeQuery _postcodeQuery;
 
-    public Search(IApiClient apiClient)
+    public Search(IPostcodeQuery postcodeQuery)
     {
-        _apiClient = apiClient;
+        _postcodeQuery = postcodeQuery;
     }
     
     [Required]
     [StringLength(8)]
     [BindProperty]
     public string? Postcode { get; set; }
-    
+
     public async Task<IActionResult> OnPostAsync()
     {
-        Task<bool> isPostcodeValid = _apiClient.IsPostcodeValid(Postcode!);
-        
-        if (ModelState.IsValid && await isPostcodeValid)
+        if (string.IsNullOrWhiteSpace(Postcode))
         {
-            return RedirectToPage("/Results", new { Postcode });
+            return PageWithErrorState();
         }
         
+        Location? location = await _postcodeQuery.GetLocationFromPostcode(Postcode);
+
+        if (location is null)
+        {
+            return PageWithErrorState();
+        }
+        
+        return RedirectToPage("/Results", new { location.Postcode, location.Latitude, location.Longitude, CurrentPage = 1 });
+    }
+
+    private PageResult PageWithErrorState()
+    {
         Error = true;
         return Page();
-
     }
 }

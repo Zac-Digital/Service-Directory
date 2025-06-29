@@ -4,7 +4,5 @@ namespace ServiceDirectory.Application.Postcode.Queries;
 
 public interface IPostcodeQuery
 {
-    public Task<bool> IsPostcodeValid(string postcode);
-    
-    public Task<LocationModel?> GetLocationFromPostcode(string postcode);
+    public Task<Location?> GetLocationFromPostcode(string postcode);
 }

@@ -1,7 +1,7 @@
 name: Build & Test Solution
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   push:
     paths:
       - 'src/**'
@@ -28,7 +28,7 @@ jobs:
         uses: ./.github/actions/setup-dotnet
         with:
           dotnet-version: '9.x'
-          
+
       - name: Test Solution
         shell: bash
         run: dotnet test --configuration Release --no-build --no-restore --filter Category!=E2E

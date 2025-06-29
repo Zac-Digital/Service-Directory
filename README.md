@@ -16,8 +16,8 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
     |- ServiceDirectory.Domain
     |- ServiceDirectory.Infrastructure.Data
     |- ServiceDirectory.Infrastructure.Postcode
-    |- ServiceDirectory.Presentation.Api
     |- ServiceDirectory.Presentation.Web
+    |- ServiceDirectory.Presentation.Web.Node
 ```
 
 - `ServiceDirectory.Application` - Contains business logic on behalf of the Presentation layer(s), interfacing with the
@@ -26,8 +26,8 @@ named [Family Hubs](https://github.com/DFE-Digital/fh-services).
   layers.
 - `ServiceDirectory.Infrastructure.Data` - Contains external database connections and facilitates CRUD operations.
 - `ServiceDirectory.Infrastructure.Postcode` - Contains an HTTP client repository connecting to [Postcodes.io](https://postcodes.io/)
-- `ServiceDirectory.Presentation.Api` - Contains an API that is consumed by the Web layer.
 - `ServiceDirectory.Presentation.Web` - Contains the user-facing web application layer.
+- `ServiceDirectory.Presentation.Web.Node` - Contains the GOV.UK frontend NPM package, any custom SCSS and a build system to apply it to `ServiceDirectory.Presentation.Web`. 
 
 ## Building, Running & Testing
 
@@ -57,18 +57,22 @@ install Microsoft SQL Server 2022 natively — but I recommend going with Docker
 4. Execute `dotnet restore`
 5. Execute `dotnet build --configuration Release --no-restore`
 
+Note: if you wish to update the GOV.UK frontend package, or add custom CSS, this is all done in the `ServiceDirectory.Presentation.Web.Node` project. Please follow the [README](./src/ServiceDirectory.Presentation.Web.Node/README.md) in there for instructions on how to update the main project with relevant changes.
+
 ### Running
 
 1. Make sure you have followed [Building](#building)
-2. `cd` into `src` and then `cd` into `ServiceDirectory.Presentation.Api`
+2. `cd` into `src` and then `cd` into `ServiceDirectory.Presentation.Web`
 3. Execute `dotnet run --configuration Release --no-build --no-restore`
-4. In another terminal window/tab, `cd` into `src` and then `cd` into `ServiceDirectory.Presentation.Web`
-5. Execute `dotnet run --configuration Release --no-build --no-restore`
 
-You should now have the API and the Web Application running concurrently.
+You should now have the Web Application running.
 
-- Navigate to https://localhost:7024/ to open the Service Directory Web Application and start playing around the UI!
-- Navigate to https://localhost:7086/swagger/index.html to open the Service Directory API and play with the endpoints!
+### Entry Point(s)
+
+- **Firstly**, navigate to https://localhost:7024/swagger/index.html as this contains a convenient API for seeding the database with mock data. You can go here and play with it as much as you like, but a minimum of running it once for the first time is required.
+- Navigate to https://localhost:7024/ to open the Web Application itself and have a play around!
+
+After the first time, any further runs of the Web App. only require you to go to the UI at https://localhost:7024/ as the mock data is persisted in your database, so further playing around with the API component is optional.
 
 ### Testing
 
@@ -78,8 +82,10 @@ Please note that Docker is **required** for running the Integration Tests, as th
 2. `cd` into the root of the project that contains `ServiceDirectory.sln`
 3. To run **WITH** the E2E Tests..
     1. Make sure you have the app up and running: [Running](#running)
-    2. Ensure [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.5) is installed, and execute `pwsh bin/Release/net9.0/playwright.ps1 install`
-    3. Execute `dotnet test --configuration Release --no-build --no-restore`
+    2. `cd` into `test` then `ServiceDirectory.Presentation.Web.E2E`
+    3. Ensure [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.5) is installed, and execute `pwsh bin/Release/net9.0/playwright.ps1 install`
+    4. Make sure you then `cd` back into the root of the project that contains `ServiceDirectory.sln`
+    5. Execute `dotnet test --configuration Release --no-build --no-restore`
 4. To run **WITHOUT** the E2E Tests..
     1. Execute `dotnet test --configuration Release --no-build --no-restore --filter Category!=E2E`
 
