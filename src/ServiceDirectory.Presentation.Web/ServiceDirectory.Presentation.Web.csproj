@@ -28,6 +28,8 @@
       <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_NextPage.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_PageNumber.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\ResultsPartials\PaginationPartials\_PreviousPage.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\application.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\application.css.map" />
     </ItemGroup>
 
 </Project>

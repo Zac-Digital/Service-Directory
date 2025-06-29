@@ -2,7 +2,9 @@
 @model ServiceDirectory.Domain.Service.Service
 
 <li data-testid="Results_LIST_Secondary">
-    <h2 data-testid="Results_HEADER_Service-Name" class="govuk-heading-s govuk-!-margin-bottom-3">@Model.Name <span class="govuk-!-font-weight-regular">(@Model.DistanceInMiles.ToString("F1", CultureInfo.CurrentCulture) miles)</span></h2>
+    <h2 data-testid="Results_HEADER_Service-Name" class="govuk-heading-s govuk-!-margin-bottom-3">@Model.Name <span
+            class="govuk-!-font-weight-regular">(@Model.DistanceInMiles.ToString("F1", CultureInfo.CurrentCulture) miles)</span>
+    </h2>
 
     <dl data-testid="Results_BODY_Service-Cost" class="govuk-body-s">
         <dt class="govuk-!-font-weight-bold">Cost</dt>
