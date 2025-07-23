@@ -5,7 +5,7 @@ using ServiceDirectory.Infrastructure.Data;
 
 namespace ServiceDirectory.Application.Database.Commands;
 
-public class MockDataCommand : IMockDataCommand
+public sealed class MockDataCommand : IMockDataCommand
 {
     private readonly ILogger<IMockDataCommand> _logger;
     private readonly IApplicationDbContext _applicationDbContext;

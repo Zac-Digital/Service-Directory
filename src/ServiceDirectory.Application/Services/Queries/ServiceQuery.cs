@@ -4,7 +4,7 @@ using ServiceDirectory.Infrastructure.Data;
 
 namespace ServiceDirectory.Application.Services.Queries;
 
-public class ServiceQuery : IServiceQuery
+public sealed class ServiceQuery : IServiceQuery
 {
     private readonly IApplicationDbContext _applicationDbContext;
 

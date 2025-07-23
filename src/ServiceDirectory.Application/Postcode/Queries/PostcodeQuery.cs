@@ -3,7 +3,7 @@ using ServiceDirectory.Infrastructure.Postcode;
 
 namespace ServiceDirectory.Application.Postcode.Queries;
 
-public class PostcodeQuery : IPostcodeQuery
+public sealed class PostcodeQuery : IPostcodeQuery
 {
     private readonly IPostcodeClient _postcodeClient;
 

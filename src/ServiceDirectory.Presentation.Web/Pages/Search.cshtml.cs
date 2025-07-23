@@ -7,7 +7,7 @@ using ServiceDirectory.Presentation.Web.Pages.Shared;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
-public class Search : ServiceDirectoryBasePage
+public sealed class Search : ServiceDirectoryBasePage
 {
     private readonly IPostcodeQuery _postcodeQuery;
 

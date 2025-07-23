@@ -2,7 +2,7 @@ using ServiceDirectory.Application.Database.Commands;
 
 namespace ServiceDirectory.Presentation.Web.Endpoints;
 
-public class MinimalServiceEndpoints
+public sealed class MinimalServiceEndpoints
 {
     public void Register(WebApplication webApplication)
     {

@@ -1,6 +1,6 @@
 namespace ServiceDirectory.Domain.Service;
 
-public class Schedule : EntityBase
+public sealed class Schedule : EntityBase
 {
     public TimeOnly OpeningTime { get; init; }
     public TimeOnly ClosingTime { get; init; }

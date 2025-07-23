@@ -1,6 +1,6 @@
 namespace ServiceDirectory.Domain.Service;
 
-public class Location : EntityBase
+public sealed class Location : EntityBase
 {
     public string AddressLineOne { get; init; } = null!;
     public string AddressLineTwo { get; init; } = null!;

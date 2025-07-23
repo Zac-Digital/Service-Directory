@@ -4,7 +4,7 @@ using Shouldly;
 
 namespace ServiceDirectory.Presentation.Web.IntegrationTest.Service.Queries;
 
-public class ServiceQueryTests : BaseIntegrationTest
+public sealed class ServiceQueryTests : BaseIntegrationTest
 {
     [Fact]
     public async Task GetServicesByLocation_Should_ReturnServices()
