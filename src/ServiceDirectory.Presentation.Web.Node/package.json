@@ -18,7 +18,7 @@
   "homepage": "https://github.com/Zac-Digital/Service-Directory#readme",
   "dependencies": {
     "@ministryofjustice/frontend": "^5.1.5",
-    "esbuild": "^0.25.5",
+    "esbuild": "^0.25.8",
     "esbuild-sass-plugin": "^3.3.1",
     "govuk-frontend": "^5.11.1",
     "moment": "^2.30.1",
