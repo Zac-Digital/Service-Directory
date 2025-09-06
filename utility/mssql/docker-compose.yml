@@ -1,6 +1,7 @@
-name: Service-Directory
+name: Service Directory
 services:
   mssql:
+    container_name: Service-Directory
     image: mcr.microsoft.com/mssql/server:2022-latest
     ports:
       - "1433:1433"
@@ -9,7 +10,7 @@ services:
       ACCEPT_EULA: Y
     restart: no
     volumes:
-      - ./sql/data:/var/opt/mssql/data
-      - ./sql/log:/var/opt/mssql/log
-      - ./sql/secrets:/var/opt/mssql/secrets
-      - ./sql/backup:/var/opt/mssql/backup
+      - sql:/var/opt/mssql
+volumes:
+  sql:
+    name: Service-Directory

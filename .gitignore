@@ -1,7 +1,6 @@
 .vscode/
 .idea/
 .DS_Store
-utility/mssql/sql
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
