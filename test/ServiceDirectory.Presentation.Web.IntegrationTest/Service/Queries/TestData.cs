@@ -2,7 +2,7 @@
 
 namespace ServiceDirectory.Presentation.Web.IntegrationTest.Service.Queries;
 
-public class TestData
+public sealed class TestData
 {
     public readonly Organisation TestOrganisationWithSingleService = new()
     {

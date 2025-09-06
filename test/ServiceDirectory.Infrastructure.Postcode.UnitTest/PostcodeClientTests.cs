@@ -7,7 +7,7 @@ using Shouldly;
 
 namespace ServiceDirectory.Infrastructure.Postcode.UnitTest;
 
-public class PostcodeClientTests
+public sealed class PostcodeClientTests
 {
     [Fact]
     public async Task GetLocation_Returns_ExpectedResult()

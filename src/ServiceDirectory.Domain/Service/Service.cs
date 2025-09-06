@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ServiceDirectory.Domain.Service;
 
-public class Service : EntityBase
+public sealed class Service : EntityBase
 {
     public int OrganisationId { get; init; }
     

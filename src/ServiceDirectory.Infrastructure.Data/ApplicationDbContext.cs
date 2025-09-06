@@ -3,7 +3,7 @@ using ServiceDirectory.Domain.Service;
 
 namespace ServiceDirectory.Infrastructure.Data;
 
-public class ApplicationDbContext : DbContext, IApplicationDbContext
+public sealed class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {

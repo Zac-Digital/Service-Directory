@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 
 namespace ServiceDirectory.Presentation.Web.E2E;
 
-public partial class ResultsPage : BasePageTest
+public sealed partial class ResultsPage : BasePageTest
 {
     private const string Path = "/Results?Postcode=SW1A%201AA&Latitude=51.501009&Longitude=-0.141588&CurrentPage=";
     private const string PathEmpty = "/Results?Postcode=SW1A%201AA&Latitude=0.00&Longitude=0.00&CurrentPage=1";

@@ -5,7 +5,7 @@ using ServiceDirectory.Domain.Postcode;
 
 namespace ServiceDirectory.Infrastructure.Postcode;
 
-public class PostcodeClient : IPostcodeClient
+public sealed class PostcodeClient : IPostcodeClient
 {
     private const int StatusCodeOk = (int)HttpStatusCode.OK;
 

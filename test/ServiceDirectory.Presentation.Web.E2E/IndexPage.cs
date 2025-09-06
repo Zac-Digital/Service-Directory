@@ -1,6 +1,6 @@
 ﻿namespace ServiceDirectory.Presentation.Web.E2E;
 
-public class IndexPage : BasePageTest
+public sealed class IndexPage : BasePageTest
 {
     public IndexPage()
     {

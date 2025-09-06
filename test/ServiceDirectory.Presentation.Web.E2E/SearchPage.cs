@@ -1,6 +1,6 @@
 namespace ServiceDirectory.Presentation.Web.E2E;
 
-public class SearchPage : BasePageTest
+public sealed class SearchPage : BasePageTest
 {
     public SearchPage()
     {

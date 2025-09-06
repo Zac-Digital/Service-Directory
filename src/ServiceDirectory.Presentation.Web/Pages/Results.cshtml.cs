@@ -8,7 +8,7 @@ using Location = ServiceDirectory.Domain.Postcode.Location;
 
 namespace ServiceDirectory.Presentation.Web.Pages;
 
-public class Results : ServiceDirectoryBasePage
+public sealed class Results : ServiceDirectoryBasePage
 {
     private readonly IServiceQuery _serviceQuery;
 

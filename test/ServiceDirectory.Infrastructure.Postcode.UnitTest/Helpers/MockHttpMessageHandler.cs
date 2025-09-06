@@ -2,7 +2,7 @@ using System.Net;
 
 namespace ServiceDirectory.Infrastructure.Postcode.UnitTest.Helpers;
 
-public class MockHttpMessageHandler : HttpMessageHandler
+public sealed class MockHttpMessageHandler : HttpMessageHandler
 {
     private readonly HttpStatusCode _statusCode;
     private readonly string _response;

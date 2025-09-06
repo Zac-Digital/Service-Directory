@@ -6,7 +6,7 @@ using Shouldly;
 
 namespace ServiceDirectory.Application.UnitTest.Postcode.Queries;
 
-public class PostcodeQueryTests
+public sealed class PostcodeQueryTests
 {
     private readonly PostcodeQuery _postcodeQuery;
     private readonly IPostcodeClient _postcodeClient;
